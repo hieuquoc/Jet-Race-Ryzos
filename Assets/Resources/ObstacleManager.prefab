@@ -63,6 +63,11 @@ MonoBehaviour:
     SkipLine: 0
   - Obstacles:
     - {fileID: 6559157191249807788, guid: 7c73f702bb1097345a19b6450310a128, type: 3}
+    - {fileID: 5351662297175152595, guid: ed1ba2f813f5e5246bb3f1fe7fe09bef, type: 3}
+    PoolSize: 5
+    SafeDistance: 3
+    SkipLine: 0
+  - Obstacles: []
     PoolSize: 5
     SafeDistance: 3
     SkipLine: 0
@@ -74,6 +79,8 @@ MonoBehaviour:
     Name: mix blocks
   - Distance: 2700
     Name: updown block
+  - Distance: 4000
+    Name: blank
   - Distance: 4200
     Name: transition tunnel
   - Distance: 4600

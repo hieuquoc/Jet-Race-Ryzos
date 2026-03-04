@@ -10,7 +10,7 @@ public class BlockLine : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        if(ObstacleController.Instance.IsSkippingObstacle())
+        if(ObstacleController.Instance.IsSkippingObstacle() || ObstacleController.Instance.GetCurrentObstacleSet().Obstacles.Length == 0)
         {
             return;
         }
@@ -20,6 +20,11 @@ public class BlockLine : MonoBehaviour
             ObstacleController.Instance.ReturnToPool(Obstacle.gameObject);
         }
         Obstacle = ObstacleController.Instance.SpawnRandom(spawnPosition, Quaternion.identity, transform).transform;
+        BaseMoveObstacle moveObstacle = Obstacle.GetComponent<BaseMoveObstacle>();
+        if (moveObstacle != null)
+        {
+            moveObstacle.SetUp();
+        }
     }
 
     public void SpawnObstacleDelayed(float delay)

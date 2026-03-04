@@ -2,89 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockMove : MonoBehaviour
+public class BlockMove : BaseMoveObstacle
 {
-    public MoveDirection MoveDirection = MoveDirection.UpDown;
+    
     public float MoveSpeed = 5f;
     public float MoveDistance = 2f;
 
     private Vector3 startPosition;
     private bool phaseOne = true;
+    public Vector3 moveVector;
 
-    void OnEnable()
+    [SerializeField] private Vector3 currentMoveVector;
+
+    public override void SetUp()
     {
+        base.SetUp();
         startPosition = transform.position;
-        phaseOne = true;
+        currentMoveVector = moveVector;
+        float distance = Random.Range(-MoveDistance, MoveDistance);
+        phaseOne = distance >= 0;
+        transform.position += moveVector.normalized * distance;
     }
-
     // Update is called once per frame
     void Update()
     {
-        switch (MoveDirection)
+        Debug.Log("start position: " + startPosition + " position: " + transform.position + " phaseOne: " + phaseOne + " distance: " + Distance());
+        if (Distance() >= MoveDistance && phaseOne)
         {
-            case MoveDirection.Left:
-            case MoveDirection.Right:
-                if (phaseOne && Vector3.Distance(transform.position, startPosition) >= MoveDistance)
-                {
-                    phaseOne = false;
-                }
-                else if (!phaseOne && Vector3.Distance(transform.position, startPosition) <= 0.1f)
-                {
-                    phaseOne = true;
-                }
-                break;
-            case MoveDirection.UpDown:
-                if (phaseOne && Vector3.Distance(transform.position, startPosition) >= MoveDistance)
-                {
-                    phaseOne = false;
-                }
-                else if (!phaseOne && Vector3.Distance(transform.position, startPosition) <= 0.1f)
-                {
-                    phaseOne = true;
-                }
-                break;
+            currentMoveVector *= -1;
+            phaseOne = false;
         }
-        MoveDirection currentDirection = phaseOne ? MoveDirection : GetOppositeDirection(MoveDirection);
-        MoveInDirection(currentDirection, MoveSpeed);
+        else if (Distance() <= 0.1f && !phaseOne)
+        {
+            currentMoveVector *= -1;
+            phaseOne = true;
+        }
+        transform.Translate(currentMoveVector * MoveSpeed * Time.deltaTime);
     }
 
-    void MoveInDirection(MoveDirection direction, float speed)
+    public float Distance()
     {
-        Vector3 moveVector = Vector3.zero;
-        switch (direction)
+        if(moveVector.x != 0)
         {
-            case MoveDirection.Left:
-                moveVector = Vector3.left;
-                break;
-            case MoveDirection.Right:
-                moveVector = Vector3.right;
-                break;
-            case MoveDirection.UpDown:
-                moveVector = Vector3.up;
-                break;
+            return Mathf.Abs(transform.position.x - startPosition.x);
         }
-        transform.Translate(moveVector * speed * Time.deltaTime);
-    }
-
-    MoveDirection GetOppositeDirection(MoveDirection direction)
-    {
-        switch (direction)
+        else if(moveVector.y != 0)
         {
-            case MoveDirection.Left:
-                return MoveDirection.Right;
-            case MoveDirection.Right:
-                return MoveDirection.Left;
-            case MoveDirection.UpDown:
-                return MoveDirection.UpDown;
-            default:
-                return direction;
+            return Mathf.Abs(transform.position.y - startPosition.y);
         }
+        else if(moveVector.z != 0)
+        {
+            return Mathf.Abs(transform.position.z - startPosition.z);
+        }
+        return 0f;
     }
 }
 
-public enum MoveDirection
-{
-    Left,
-    Right,
-    UpDown
-}
+
