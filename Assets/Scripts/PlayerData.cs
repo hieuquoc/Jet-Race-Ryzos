@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public static class PlayerData 
+{
+    public const string HighScoreKey = "HighScore";
+    public const string CoinsKey = "Coins";
+    public const string OwnedShipsKey = "1";
+    public const string SelectedShipKey = "SelectedShip";
+    public static float RunDistance = 0;
+    public static float LoopStartDistance = 0;
+
+    public static int HighScore
+    {
+        get => PlayerPrefs.GetInt(HighScoreKey, 0);
+        set => PlayerPrefs.SetInt(HighScoreKey, value);
+    }
+
+    public static int Coins
+    {
+        get => PlayerPrefs.GetInt(CoinsKey, 0);
+        set => PlayerPrefs.SetInt(CoinsKey, value);
+    }
+
+    public static void AddCoins(int amount)
+    {
+        var currentCoins = Coins + amount;
+        Coins = currentCoins;
+    }
+
+    public static List<string> OwnedShips
+    {
+        get
+        {
+            if(!PlayerPrefs.HasKey(OwnedShipsKey))
+            {
+                PlayerPrefs.SetString(OwnedShipsKey, "1");
+            }
+            var ownedShips = PlayerPrefs.GetString(OwnedShipsKey, "1");
+            return new List<string>(ownedShips.Split(','));
+        }
+        set
+        {
+            var ownedShips = string.Join(",", value);
+            PlayerPrefs.SetString(OwnedShipsKey, ownedShips);
+        }
+    }
+
+    public static string SelectedShip
+    {
+        get {
+            if(!PlayerPrefs.HasKey(SelectedShipKey))
+            {
+                PlayerPrefs.SetString(SelectedShipKey, "spaceship_1");
+            }
+            return PlayerPrefs.GetString(SelectedShipKey, "spaceship_1");
+        }
+        set => PlayerPrefs.SetString(SelectedShipKey, value);
+    }
+
+    public static bool OwnsShip(string shipId)
+    {
+        return OwnedShips.Contains(shipId);
+    }
+
+    public static void AddShip(string shipId)
+    {
+        var ships = OwnedShips;
+        if (!ships.Contains(shipId))
+        {
+            ships.Add(shipId);
+            OwnedShips = ships;
+        }
+        string ownedShips = "";
+        foreach (var ship in ships)
+        {
+            ownedShips += ship + ",";
+        }
+        PlayerPrefs.SetString(OwnedShipsKey, ownedShips);
+    }
+}

@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7199399286124268592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2264612134378056863}
+  - component: {fileID: 8599919829802294674}
+  m_Layer: 0
+  m_Name: ObstacleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2264612134378056863
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199399286124268592}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7472566, y: 6.400496, z: -0.09285991}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8599919829802294674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7199399286124268592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cf9a52d98cb5942bc108697a1d0a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstacleSets:
+  - Obstacles:
+    - {fileID: 536019581361071569, guid: d310a25f1b5b1e34f8c6aceaa281fe5b, type: 3}
+    - {fileID: 1898200621102464263, guid: 59706d9e9a0fb14498834ee9422602fd, type: 3}
+    - {fileID: 8288537978637714836, guid: 5d91a4ab429f71e48adf56ff9a0467e7, type: 3}
+    PoolSize: 5
+    SafeDistance: 3
+    SkipLine: 0
+  - Obstacles:
+    - {fileID: 536019581361071569, guid: d310a25f1b5b1e34f8c6aceaa281fe5b, type: 3}
+    - {fileID: 1898200621102464263, guid: 59706d9e9a0fb14498834ee9422602fd, type: 3}
+    - {fileID: 8288537978637714836, guid: 5d91a4ab429f71e48adf56ff9a0467e7, type: 3}
+    - {fileID: 1353356579816912967, guid: 0718bdc0f16c6284bab8ec63133f8835, type: 3}
+    - {fileID: 7058715896743029642, guid: 32252ccc83998ef4982c747ef1759b13, type: 3}
+    PoolSize: 5
+    SafeDistance: 3
+    SkipLine: 0
+  - Obstacles:
+    - {fileID: 6559157191249807788, guid: 7c73f702bb1097345a19b6450310a128, type: 3}
+    PoolSize: 5
+    SafeDistance: 3
+    SkipLine: 0
+  ObstacleLineIndexs: 
+  _checkPoints:
+  - Distance: 0
+    Name: blocks
+  - Distance: 1800
+    Name: mix blocks
+  - Distance: 2700
+    Name: updown block
+  - Distance: 4200
+    Name: transition tunnel
+  - Distance: 4600
+    Name: triangle
+  - Distance: 6100
+    Name: updown block
+  - Distance: 7200
+    Name: swipe block
+  - Distance: 7500
+    Name: blocks
+  - Distance: 7700
+    Name: swipe block
+  - Distance: 8100
+    Name: blocks
+  - Distance: 8300
+    Name: swipe block
+  - Distance: 10000
+    Name: gates collumn
+  - Distance: 10300
+    Name: blocks
