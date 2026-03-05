@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817accff739114141af58585549e8500, type: 3}
+  m_Name: Tunnel
+  m_EditorClassIdentifier: 
+  Obstacles:
+  - {fileID: 2270822375763850539, guid: 511e86f89b998f049b010ca2876bdd89, type: 3}
+  PoolSize: 1

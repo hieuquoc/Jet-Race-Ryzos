@@ -44,65 +44,149 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2cf9a52d98cb5942bc108697a1d0a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObstacleSets:
-  - Obstacles:
-    - {fileID: 536019581361071569, guid: d310a25f1b5b1e34f8c6aceaa281fe5b, type: 3}
-    - {fileID: 1898200621102464263, guid: 59706d9e9a0fb14498834ee9422602fd, type: 3}
-    - {fileID: 8288537978637714836, guid: 5d91a4ab429f71e48adf56ff9a0467e7, type: 3}
-    PoolSize: 5
-    SafeDistance: 3
-    SkipLine: 0
-  - Obstacles:
-    - {fileID: 536019581361071569, guid: d310a25f1b5b1e34f8c6aceaa281fe5b, type: 3}
-    - {fileID: 1898200621102464263, guid: 59706d9e9a0fb14498834ee9422602fd, type: 3}
-    - {fileID: 8288537978637714836, guid: 5d91a4ab429f71e48adf56ff9a0467e7, type: 3}
-    - {fileID: 1353356579816912967, guid: 0718bdc0f16c6284bab8ec63133f8835, type: 3}
-    - {fileID: 7058715896743029642, guid: 32252ccc83998ef4982c747ef1759b13, type: 3}
-    PoolSize: 5
-    SafeDistance: 3
-    SkipLine: 0
-  - Obstacles:
-    - {fileID: 6559157191249807788, guid: 7c73f702bb1097345a19b6450310a128, type: 3}
-    - {fileID: 5351662297175152595, guid: ed1ba2f813f5e5246bb3f1fe7fe09bef, type: 3}
-    PoolSize: 5
-    SafeDistance: 3
-    SkipLine: 0
-  - Obstacles: []
-    PoolSize: 5
-    SafeDistance: 3
-    SkipLine: 0
-  - Obstacles:
-    - {fileID: 2270822375763850539, guid: 511e86f89b998f049b010ca2876bdd89, type: 3}
-    PoolSize: 1
-    SafeDistance: 3
-    SkipLine: 2147483647
   ObstacleLineIndexs: 
   _checkPoints:
-  - Distance: 0
+  - ObstacleSet: {fileID: 11400000, guid: 74897e44ccb74fa478b29417cd5f0fe5, type: 2}
+    Length: 1700
     Name: blocks
-  - Distance: 1800
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 11400000, guid: 6e5d21ffb27e98245b527cc1a4af6384, type: 2}
+    Length: 900
     Name: mix blocks
-  - Distance: 2700
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 11400000, guid: e635bc79e66e54c4b8344b24dca49a73, type: 2}
+    Length: 1400
     Name: updown block
-  - Distance: 4000
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
+    Length: 100
     Name: blank
-  - Distance: 4200
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 11400000, guid: c521326a354a49f4eaa6681819929788, type: 2}
+    Length: 400
     Name: transition tunnel
-  - Distance: 4600
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 1600
     Name: triangle
-  - Distance: 6100
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 1100
     Name: updown block
-  - Distance: 7200
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 300
     Name: swipe block
-  - Distance: 7500
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 200
     Name: blocks
-  - Distance: 7700
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 300
     Name: swipe block
-  - Distance: 8100
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 300
     Name: blocks
-  - Distance: 8300
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 300
     Name: swipe block
-  - Distance: 10000
-    Name: gates collumn
-  - Distance: 10300
-    Name: blocks
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 300
+    Name: block
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 1000
+    Name: swipe
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 100
+    Name: blank
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0
+  - ObstacleSet: {fileID: 0}
+    Length: 280
+    Name: gate
+    ObstacleCount: 0
+    SpawnedObstacleCount: 0
+    SkipLine: 0
+    Completed: 0
+    CurrentSkipCount: 0
+    FixedMidpoint: 0

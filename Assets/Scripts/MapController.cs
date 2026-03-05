@@ -75,6 +75,7 @@ public class MapController : MonoBehaviour
                 lastSpawnedLine = line;
             }
         }
+        ObstacleController.Instance.UpdateCheckPoint();
     }
 
     private void SpawnInitialLines()
@@ -119,9 +120,4 @@ public class MapController : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public struct CheckPoint
-{
-    public float Length;
-    public string Name;
-}
+

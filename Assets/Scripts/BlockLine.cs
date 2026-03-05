@@ -10,21 +10,13 @@ public class BlockLine : MonoBehaviour
 
     public void SpawnObstacle()
     {
-        if(ObstacleController.Instance.IsSkippingObstacle() || ObstacleController.Instance.GetCurrentObstacleSet().Obstacles.Length == 0)
-        {
-            return;
-        }
-        Vector3 spawnPosition = GetLinePoint(ObstacleController.Instance.GetNextObstacleLineIndex());
         if (Obstacle != null)
         {
             ObstacleController.Instance.ReturnToPool(Obstacle.gameObject);
         }
+        Vector3 spawnPosition = GetLinePoint(ObstacleController.Instance.GetNextObstacleLineIndex());
+        
         Obstacle = ObstacleController.Instance.SpawnRandom(spawnPosition, Quaternion.identity, transform).transform;
-        BaseMoveObstacle moveObstacle = Obstacle.GetComponent<BaseMoveObstacle>();
-        if (moveObstacle != null)
-        {
-            moveObstacle.SetUp();
-        }
     }
 
     public void SpawnObstacleDelayed(float delay)

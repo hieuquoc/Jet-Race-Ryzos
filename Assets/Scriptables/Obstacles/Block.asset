@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817accff739114141af58585549e8500, type: 3}
+  m_Name: Block
+  m_EditorClassIdentifier: 
+  Obstacles:
+  - {fileID: 536019581361071569, guid: d310a25f1b5b1e34f8c6aceaa281fe5b, type: 3}
+  - {fileID: 1898200621102464263, guid: 59706d9e9a0fb14498834ee9422602fd, type: 3}
+  - {fileID: 8288537978637714836, guid: 5d91a4ab429f71e48adf56ff9a0467e7, type: 3}
+  PoolSize: 5

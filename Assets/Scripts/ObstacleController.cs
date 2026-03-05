@@ -5,15 +5,14 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour
 {
     public Dictionary<GameObject, Queue<GameObject>> obstaclePools = new Dictionary<GameObject, Queue<GameObject>>();
-    public ObstacleSet[] ObstacleSets;
     public List<int> ObstacleLineIndexs = new List<int>();
     [SerializeField] private CheckPoint[] _checkPoints;
     public CheckPoint[] CheckPoints => _checkPoints;
     public static ObstacleController Instance;
-    private int lineSkipIndex = 0;
-    private int currentLineIndex = 0;
     private float loopLength = 0;
     public static float LoopLength => Instance.loopLength;
+    private int currentLineIndex = -1;
+    private int _currentCheckPoint;
 
     void Awake()
     {
@@ -22,6 +21,7 @@ public class ObstacleController : MonoBehaviour
         {
             loopLength += cp.Length;
         }
+        _currentCheckPoint = 0;
     }
 
     void Start()
@@ -32,10 +32,11 @@ public class ObstacleController : MonoBehaviour
 
     void InitializePools()
     {
-        if (ObstacleSets == null) return;
+        if (_checkPoints == null) return;
 
-        foreach (var set in ObstacleSets)
+        foreach (var cp in _checkPoints)
         {
+            var set = cp.ObstacleSet;
             if (set == null || set.Obstacles == null) continue;
 
             foreach (var prefab in set.Obstacles)
@@ -59,15 +60,10 @@ public class ObstacleController : MonoBehaviour
         }
     }
 
-    public GameObject SpawnRandomFromSet(int setIndex, Vector3 position, Quaternion rotation, Transform parent = null)
+    public GameObject SpawnRandomFromSet(int checkPoint, Vector3 position, Quaternion rotation, Transform parent = null)
     {
-        if (ObstacleSets == null || setIndex < 0 || setIndex >= ObstacleSets.Length)
-        {
-            Debug.LogWarning("Invalid obstacle set index");
-            return null;
-        }
 
-        var set = ObstacleSets[setIndex];
+        var set = _checkPoints[checkPoint].ObstacleSet;
         if (set == null || set.Obstacles == null || set.Obstacles.Length == 0)
         {
             Debug.LogWarning("Obstacle set is empty");
@@ -83,12 +79,20 @@ public class ObstacleController : MonoBehaviour
         obj.transform.position = position;
         obj.transform.rotation = rotation;
         obj.SetActive(true);
+        var moveObstacle = obj.GetComponent<BaseMoveObstacle>();
+        if (moveObstacle != null)
+        {
+            moveObstacle.SetUp();
+        }
         return obj;
     }
 
     public GameObject SpawnRandom(Vector3 position, Quaternion rotation, Transform parent = null){
-        int setIndex = GetCurrentObstacleSetIndex();
-        return SpawnRandomFromSet(setIndex, position, rotation, parent);
+        if(IsSkippingObstacle())
+        {
+            return null;
+        }
+        return SpawnRandomFromSet(_currentCheckPoint, position, rotation, parent);
     }
 
     GameObject GetFromPool(GameObject prefab)
@@ -133,37 +137,16 @@ public class ObstacleController : MonoBehaviour
         q.Enqueue(obj);
     }
 
-    public int GetCurrentObstacleSetIndex()
-    {
-        for (int i = CheckPoints.Length - 1; i >= 0; i--)
-        {
-            if (PlayerData.LoopStartDistance >= CheckPoints[i].Length)
-            {
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    public ObstacleSet GetCurrentObstacleSet()
-    {
-        int index = GetCurrentObstacleSetIndex();
-        if (ObstacleSets != null && index >= 0 && index < ObstacleSets.Length)
-        {
-            return ObstacleSets[index];
-        }
-        return null;
-    }
+    
 
     public bool IsSkippingObstacle()
     {
-        int currentSkipCount = GetCurrentObstacleSet().SkipLine;
-        if(currentSkipCount == 0) return false;
+        int currentSkipCount = CheckPoints[_currentCheckPoint].SkipLine;
         bool skipping = true;    
-        lineSkipIndex--;    
-        if(lineSkipIndex <= 0)
+         CheckPoints[_currentCheckPoint].CurrentSkipCount--;    
+        if(CheckPoints[_currentCheckPoint].CurrentSkipCount <= 0)
         {
-            lineSkipIndex = currentSkipCount;
+            CheckPoints[_currentCheckPoint].CurrentSkipCount = currentSkipCount;
             skipping = false;
         }
         return skipping;
@@ -269,15 +252,45 @@ public class ObstacleController : MonoBehaviour
         }
         return ObstacleLineIndexs[currentLineIndex];
     }
-}
 
-[Serializable]
-public class ObstacleSet
-{
-    public GameObject[] Obstacles;
-    public int PoolSize = 5;
-    public int SafeDistance;
-    public int SkipLine;    
+    private void EnterCheckPoint(int checkpointIndex)
+    {
+        if (checkpointIndex < 0 || checkpointIndex >= CheckPoints.Length) return;
+        var cp = CheckPoints[checkpointIndex];
+        cp.Completed = true;
+        cp.CurrentSkipCount = 0;
+        cp.SpawnedObstacleCount = 0;
+        CheckPoints[checkpointIndex] = cp;
+    }
+
+    public void UpdateCheckPoint()
+    {
+        int checkPointIndex = GetCheckPointIndexByDistance();
+        if (checkPointIndex == _currentCheckPoint) return;
+        _currentCheckPoint = checkPointIndex;
+        if (_currentCheckPoint >= CheckPoints.Length)
+        {
+            _currentCheckPoint = CheckPoints.Length - 1;
+        }
+        EnterCheckPoint(_currentCheckPoint);
+    }
+
+    public int GetCheckPointIndexByDistance()
+    {
+        float lengthCovered = 0;
+        for (int i = 0; i < CheckPoints.Length; i++)
+        {
+            lengthCovered += CheckPoints[i].Length;
+            if (PlayerData.LoopStartDistance >= lengthCovered)
+            {
+                i++;
+            }else
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
 }
 
 [Serializable]
@@ -285,4 +298,18 @@ public class ObstacleInstance : MonoBehaviour
 {
     public GameObject Prefab;
     
+}
+
+[System.Serializable]
+public struct CheckPoint
+{
+    public ObstacleSet ObstacleSet;
+    public float Length;
+    public string Name;
+    public int ObstacleCount;
+    public int SpawnedObstacleCount;
+    public int SkipLine;
+    public bool Completed;
+    public int CurrentSkipCount;
+    public bool FixedMidpoint;
 }

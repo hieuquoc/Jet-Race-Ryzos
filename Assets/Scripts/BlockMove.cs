@@ -26,7 +26,6 @@ public class BlockMove : BaseMoveObstacle
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("start position: " + startPosition + " position: " + transform.position + " phaseOne: " + phaseOne + " distance: " + Distance());
         if (Distance() >= MoveDistance && phaseOne)
         {
             currentMoveVector *= -1;
