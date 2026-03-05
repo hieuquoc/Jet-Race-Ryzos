@@ -75,12 +75,12 @@ MonoBehaviour:
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 11400000, guid: c521326a354a49f4eaa6681819929788, type: 2}
-    Length: 400
+    Length: 600
     Name: transition tunnel
     SingleObstacle: 1
     SkipLine: 2147483647
     CurrentSkipCount: 0
-    FixedMidpoint: 0
+    FixedMidpoint: 1
   - ObstacleSet: {fileID: 0}
     Length: 1600
     Name: triangle

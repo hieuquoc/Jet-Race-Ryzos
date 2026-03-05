@@ -14,6 +14,7 @@ public class ObstacleController : MonoBehaviour
     private int currentLineIndex = -1;
     private int _currentCheckPoint;
     private GameObject curBigObstacle;
+    private List<GameObject> activeObstacles = new List<GameObject>();
     public CheckPoint CurrentCheckPoint => CheckPoints[_currentCheckPoint];
 
     void Awake()
@@ -62,7 +63,7 @@ public class ObstacleController : MonoBehaviour
         }
     }
 
-    public GameObject SpawnRandomFromSet(int checkPoint, Vector3 position, Quaternion rotation, Transform parent = null)
+    public GameObject SpawnRandomFromSet(int checkPoint, Vector3 position, Quaternion rotation)
     {
 
         var set = _checkPoints[checkPoint].ObstacleSet;
@@ -77,7 +78,7 @@ public class ObstacleController : MonoBehaviour
 
         var obj = GetFromPool(prefab);
         if (obj == null) return null;
-        obj.transform.SetParent(parent != null ? parent : transform, true);
+        obj.transform.SetParent(transform);
         obj.transform.position = position;
         obj.transform.rotation = rotation;
         obj.SetActive(true);
@@ -90,15 +91,17 @@ public class ObstacleController : MonoBehaviour
         {
             curBigObstacle = obj;
         }
+        Debug.Log($"Spawned obstacle from checkpoint {checkPoint}  : {obj.name}");
+        activeObstacles.Add(obj);
         return obj;
     }
 
-    public GameObject SpawnRandom(Vector3 position, Quaternion rotation, Transform parent = null){
+    public GameObject SpawnRandom(Vector3 position, Quaternion rotation){
         if(IsSkippingObstacle())
         {
             return null;
         }
-        return SpawnRandomFromSet(_currentCheckPoint, position, rotation, parent);
+        return SpawnRandomFromSet(_currentCheckPoint, position, rotation);
     }
 
     GameObject GetFromPool(GameObject prefab)
@@ -130,6 +133,7 @@ public class ObstacleController : MonoBehaviour
         {
             return;
         }
+        activeObstacles.Remove(obj);
         var tag = obj.GetComponent<ObstacleInstance>();
         if (tag == null || tag.Prefab == null)
         {
@@ -282,6 +286,15 @@ public class ObstacleController : MonoBehaviour
          }
     }
 
+    public void UpdateObstacles(Vector3 move)
+    {
+        foreach(var obj in activeObstacles)
+        {
+            obj.transform.position += move;
+        }
+        UpdateCheckPoint();
+    }
+
     public void UpdateCheckPoint()
     {
         int checkPointIndex = GetCheckPointIndexByDistance();
@@ -300,7 +313,7 @@ public class ObstacleController : MonoBehaviour
         for (int i = 0; i < CheckPoints.Length; i++)
         {
             lengthCovered += CheckPoints[i].Length;
-            if (PlayerData.LoopStartDistance <= lengthCovered)
+            if (MapController.LoopStartDistance <= lengthCovered)
             {
                 return i;
             }

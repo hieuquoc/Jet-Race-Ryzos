@@ -15,9 +15,7 @@ public class BlockLine : MonoBehaviour
             ObstacleController.Instance.ReturnToPool(Obstacle.gameObject);
         }
         Vector3 spawnPosition = GetLinePoint(ObstacleController.Instance.GetNextObstacleLineIndex());
-        
-        
-        Obstacle = ObstacleController.Instance.SpawnRandom(spawnPosition, Quaternion.identity, transform);
+        Obstacle = ObstacleController.Instance.SpawnRandom(spawnPosition, Quaternion.identity);
     }
 
     public void SpawnObstacleDelayed(float delay)

@@ -13,6 +13,8 @@ public class MapController : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private Transform linesParent;
     [SerializeField] private bool isMoving = true;
+    [SerializeField] float _loopStartDistance = 0f;
+    [SerializeField] private float _runDistance = 0f;
 
     private List<BlockLine> lines = new List<BlockLine>();
     private BlockLine lastSpawnedLine;
@@ -21,6 +23,16 @@ public class MapController : MonoBehaviour
     public static int CubeMapWidth => Instance.cubeMapWidth;
     public static float CubeSpacing => Instance.cubeSpacing;
     public static int CubeMapHeight => Instance.cubeMapHeight;
+    public static float RunDistance
+    {
+        get => Instance._runDistance;
+        set => Instance._runDistance = value;
+    }    
+    public static float LoopStartDistance
+    {
+        get => Instance._loopStartDistance;
+        set => Instance._loopStartDistance = value;
+    }
 
     public static MapController Instance;
 
@@ -55,11 +67,11 @@ public class MapController : MonoBehaviour
         if (!isMoving) return;
 
         float move = moveSpeed * Time.deltaTime;
-        PlayerData.RunDistance += move;
-        PlayerData.LoopStartDistance += move;
-        if(PlayerData.LoopStartDistance > ObstacleController.LoopLength)
+        RunDistance += move;
+        LoopStartDistance += move;
+        if(LoopStartDistance > ObstacleController.LoopLength)
         {
-            PlayerData.LoopStartDistance %= ObstacleController.LoopLength;
+            LoopStartDistance %= ObstacleController.LoopLength;
         }
         for (int i = 0; i < lines.Count; i++)
         {
@@ -75,7 +87,7 @@ public class MapController : MonoBehaviour
                 lastSpawnedLine = line;
             }
         }
-        ObstacleController.Instance.UpdateCheckPoint();
+        ObstacleController.Instance.UpdateObstacles(Vector3.back * move);
     }
 
     private void SpawnInitialLines()
