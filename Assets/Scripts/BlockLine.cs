@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BlockLine : MonoBehaviour
 {
-    public Transform Obstacle;
+    public GameObject Obstacle;
     public List<Transform> Cubes = new List<Transform>();
 
     public void SpawnObstacle()
@@ -16,7 +16,8 @@ public class BlockLine : MonoBehaviour
         }
         Vector3 spawnPosition = GetLinePoint(ObstacleController.Instance.GetNextObstacleLineIndex());
         
-        Obstacle = ObstacleController.Instance.SpawnRandom(spawnPosition, Quaternion.identity, transform).transform;
+        
+        Obstacle = ObstacleController.Instance.SpawnRandom(spawnPosition, Quaternion.identity, transform);
     }
 
     public void SpawnObstacleDelayed(float delay)

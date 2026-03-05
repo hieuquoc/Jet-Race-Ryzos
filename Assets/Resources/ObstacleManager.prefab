@@ -49,144 +49,112 @@ MonoBehaviour:
   - ObstacleSet: {fileID: 11400000, guid: 74897e44ccb74fa478b29417cd5f0fe5, type: 2}
     Length: 1700
     Name: blocks
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 11400000, guid: 6e5d21ffb27e98245b527cc1a4af6384, type: 2}
     Length: 900
     Name: mix blocks
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 11400000, guid: e635bc79e66e54c4b8344b24dca49a73, type: 2}
     Length: 1400
     Name: updown block
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
     Length: 100
     Name: blank
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 11400000, guid: c521326a354a49f4eaa6681819929788, type: 2}
     Length: 400
     Name: transition tunnel
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
-    SkipLine: 0
-    Completed: 0
+    SingleObstacle: 1
+    SkipLine: 2147483647
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 1600
     Name: triangle
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 1100
     Name: updown block
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: swipe block
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 200
     Name: blocks
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: swipe block
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: blocks
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: swipe block
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: block
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 1000
     Name: swipe
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 100
     Name: blank
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}
     Length: 280
     Name: gate
-    ObstacleCount: 0
-    SpawnedObstacleCount: 0
+    SingleObstacle: 0
     SkipLine: 0
-    Completed: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0

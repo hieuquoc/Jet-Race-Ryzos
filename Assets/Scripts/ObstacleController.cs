@@ -13,6 +13,8 @@ public class ObstacleController : MonoBehaviour
     public static float LoopLength => Instance.loopLength;
     private int currentLineIndex = -1;
     private int _currentCheckPoint;
+    private GameObject curBigObstacle;
+    public CheckPoint CurrentCheckPoint => CheckPoints[_currentCheckPoint];
 
     void Awake()
     {
@@ -84,6 +86,10 @@ public class ObstacleController : MonoBehaviour
         {
             moveObstacle.SetUp();
         }
+        if(CurrentCheckPoint.SingleObstacle)
+        {
+            curBigObstacle = obj;
+        }
         return obj;
     }
 
@@ -120,6 +126,10 @@ public class ObstacleController : MonoBehaviour
     public void ReturnToPool(GameObject obj)
     {
         if (obj == null) return;
+        if(CurrentCheckPoint.SingleObstacle && obj == curBigObstacle)
+        {
+            return;
+        }
         var tag = obj.GetComponent<ObstacleInstance>();
         if (tag == null || tag.Prefab == null)
         {
@@ -244,6 +254,10 @@ public class ObstacleController : MonoBehaviour
 
     public int GetNextObstacleLineIndex()
     {
+        if(CurrentCheckPoint.FixedMidpoint)
+        {
+            return MapController.CubeMapWidth / 2;
+        }
         if (ObstacleLineIndexs.Count == 0) return 0;        
         currentLineIndex++;
         if(currentLineIndex >= ObstacleLineIndexs.Count)
@@ -255,12 +269,17 @@ public class ObstacleController : MonoBehaviour
 
     private void EnterCheckPoint(int checkpointIndex)
     {
+        Debug.Log("Entering checkpoint: " + CurrentCheckPoint.Name);
+         if (checkpointIndex < 0 || checkpointIndex >= CheckPoints.Length) return;
         if (checkpointIndex < 0 || checkpointIndex >= CheckPoints.Length) return;
         var cp = CheckPoints[checkpointIndex];
-        cp.Completed = true;
         cp.CurrentSkipCount = 0;
-        cp.SpawnedObstacleCount = 0;
         CheckPoints[checkpointIndex] = cp;
+        if(curBigObstacle != null)
+         {
+             ReturnToPool(curBigObstacle);
+             curBigObstacle = null;
+         }
     }
 
     public void UpdateCheckPoint()
@@ -281,10 +300,7 @@ public class ObstacleController : MonoBehaviour
         for (int i = 0; i < CheckPoints.Length; i++)
         {
             lengthCovered += CheckPoints[i].Length;
-            if (PlayerData.LoopStartDistance >= lengthCovered)
-            {
-                i++;
-            }else
+            if (PlayerData.LoopStartDistance <= lengthCovered)
             {
                 return i;
             }
@@ -306,10 +322,8 @@ public struct CheckPoint
     public ObstacleSet ObstacleSet;
     public float Length;
     public string Name;
-    public int ObstacleCount;
-    public int SpawnedObstacleCount;
+    public bool SingleObstacle;
     public int SkipLine;
-    public bool Completed;
     public int CurrentSkipCount;
     public bool FixedMidpoint;
 }
