@@ -12,10 +12,16 @@ public class ObstacleController : MonoBehaviour
     public static ObstacleController Instance;
     private int lineSkipIndex = 0;
     private int currentLineIndex = 0;
+    private float loopLength = 0;
+    public static float LoopLength => Instance.loopLength;
 
     void Awake()
     {
         Instance = this;
+        foreach(var cp in CheckPoints)
+        {
+            loopLength += cp.Length;
+        }
     }
 
     void Start()
@@ -131,7 +137,7 @@ public class ObstacleController : MonoBehaviour
     {
         for (int i = CheckPoints.Length - 1; i >= 0; i--)
         {
-            if (PlayerData.RunDistance >= CheckPoints[i].Distance)
+            if (PlayerData.LoopStartDistance >= CheckPoints[i].Length)
             {
                 return i;
             }

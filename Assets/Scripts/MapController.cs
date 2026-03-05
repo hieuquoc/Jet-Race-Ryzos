@@ -57,9 +57,9 @@ public class MapController : MonoBehaviour
         float move = moveSpeed * Time.deltaTime;
         PlayerData.RunDistance += move;
         PlayerData.LoopStartDistance += move;
-        if(PlayerData.LoopStartDistance > ObstacleController.Instance.CheckPoints[ObstacleController.Instance.CheckPoints.Length - 1].Distance + 2000)
+        if(PlayerData.LoopStartDistance > ObstacleController.LoopLength)
         {
-            PlayerData.LoopStartDistance = 0;
+            PlayerData.LoopStartDistance %= ObstacleController.LoopLength;
         }
         for (int i = 0; i < lines.Count; i++)
         {
@@ -122,6 +122,6 @@ public class MapController : MonoBehaviour
 [System.Serializable]
 public struct CheckPoint
 {
-    public float Distance;
+    public float Length;
     public string Name;
 }

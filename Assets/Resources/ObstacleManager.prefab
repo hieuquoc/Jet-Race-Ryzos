@@ -71,6 +71,11 @@ MonoBehaviour:
     PoolSize: 5
     SafeDistance: 3
     SkipLine: 0
+  - Obstacles:
+    - {fileID: 2270822375763850539, guid: 511e86f89b998f049b010ca2876bdd89, type: 3}
+    PoolSize: 1
+    SafeDistance: 3
+    SkipLine: 2147483647
   ObstacleLineIndexs: 
   _checkPoints:
   - Distance: 0
