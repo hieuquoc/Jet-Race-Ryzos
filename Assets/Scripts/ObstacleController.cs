@@ -86,12 +86,13 @@ public class ObstacleController : MonoBehaviour
         if (moveObstacle != null)
         {
             moveObstacle.SetUp();
+            Debug.Log($"Spawned obstacle from checkpoint {checkPoint}  : {obj.name} at {position}");
         }
         if(CurrentCheckPoint.SingleObstacle)
         {
             curBigObstacle = obj;
         }
-        Debug.Log($"Spawned obstacle from checkpoint {checkPoint}  : {obj.name}");
+        
         activeObstacles.Add(obj);
         return obj;
     }

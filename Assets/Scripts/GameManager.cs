@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instantiate<GameObject>(Resources.Load<GameObject>("ObstacleManager"));
+        Instantiate(Resources.Load<GameObject>("ObstacleManager"), Vector3.zero, Quaternion.identity);
     }
 
     // Start is called before the first frame update
