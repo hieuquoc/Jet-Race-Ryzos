@@ -88,9 +88,9 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
-  - ObstacleSet: {fileID: 0}
+  - ObstacleSet: {fileID: 11400000, guid: 21e8672ceaf0faf468ed47fa90b1073c, type: 2}
     Length: 1100
-    Name: updown block
+    Name: updown mix block
     SingleObstacle: 0
     SkipLine: 0
     CurrentSkipCount: 0
