@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817accff739114141af58585549e8500, type: 3}
+  m_Name: Swipe
+  m_EditorClassIdentifier: 
+  Obstacles:
+  - {fileID: 819021967298716155, guid: 04405c52207c33741979024c6c3fab5a, type: 3}
+  - {fileID: 753642030794907677, guid: 353082fa0af5f98429ff76765ec36fe2, type: 3}
+  PoolSize: 5

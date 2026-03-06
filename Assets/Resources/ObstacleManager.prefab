@@ -95,11 +95,11 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
-  - ObstacleSet: {fileID: 0}
+  - ObstacleSet: {fileID: 11400000, guid: cc634450d6acf124d8f430775170db35, type: 2}
     Length: 300
     Name: swipe block
     SingleObstacle: 0
-    SkipLine: 0
+    SkipLine: 2
     CurrentSkipCount: 0
     FixedMidpoint: 0
   - ObstacleSet: {fileID: 0}

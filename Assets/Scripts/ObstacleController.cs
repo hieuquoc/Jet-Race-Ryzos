@@ -82,10 +82,13 @@ public class ObstacleController : MonoBehaviour
         obj.transform.position = position;
         obj.transform.rotation = rotation;
         obj.SetActive(true);
-        var moveObstacle = obj.GetComponent<BaseMoveObstacle>();
-        if (moveObstacle != null)
+        var moveObstacles = obj.GetComponents<BaseMoveObstacle>();
+        if (moveObstacles != null)
         {
-            moveObstacle.SetUp();
+            foreach (var moveObstacle in moveObstacles)
+            {
+                moveObstacle.SetUp();
+            }
             //Debug.Log($"Spawned obstacle from checkpoint {checkPoint}  : {obj.name} at {position}");
         }
         if(CurrentCheckPoint.SingleObstacle)
