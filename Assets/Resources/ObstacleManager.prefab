@@ -81,7 +81,7 @@ MonoBehaviour:
     SkipLine: 2147483647
     CurrentSkipCount: 0
     FixedMidpoint: 1
-  - ObstacleSet: {fileID: 0}
+  - ObstacleSet: {fileID: 11400000, guid: ba1b46ffd781fb64595c76f387e9ea02, type: 2}
     Length: 1600
     Name: triangle
     SingleObstacle: 0

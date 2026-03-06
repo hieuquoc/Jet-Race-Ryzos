@@ -151,10 +151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faec94e96618c6a42a7dc5d44f95329a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 2
-  MoveDistance: 5
-  moveVector: {x: 0, y: 1, z: 0}
+  MoveSpeed: 3
+  MoveDistance: 10
+  startPosition: {x: 0, y: 0, z: 0}
+  phaseOne: 1
+  visualTransform: {fileID: 7425916958949934348}
   currentMoveVector: {x: 0, y: 0, z: 0}
+  autoStart: 0
+  moveVector: {x: 0, y: 1, z: 0}
 --- !u!1 &8841311068823966614
 GameObject:
   m_ObjectHideFlags: 0

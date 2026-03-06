@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817accff739114141af58585549e8500, type: 3}
+  m_Name: Triangle
+  m_EditorClassIdentifier: 
+  Obstacles:
+  - {fileID: 8446391623971871776, guid: 1129e4f8b66f11e43b74723b554df957, type: 3}
+  - {fileID: 8950439940855140487, guid: 87af4340fa2eecc41bbe5339a76e93fe, type: 3}
+  - {fileID: 406216907658255471, guid: 86c92fc72db1b954ab7babc96bc65157, type: 3}
+  - {fileID: 4185765718872030721, guid: 00b309bb239cf6a47a4374adeab0652e, type: 3}
+  - {fileID: 9150381916826658671, guid: f606ae2c711180a498a351b3cc61370b, type: 3}
+  PoolSize: 5
