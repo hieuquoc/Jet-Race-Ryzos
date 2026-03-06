@@ -85,8 +85,8 @@ public class MapController : MonoBehaviour
                 line.ClearObstacle();
                 line.Obstacle = ObstacleController.Instance.SpawnRandom(line);
                 lastSpawnedLine = line;
-            }
-            line.gameObject.SetActive(!ObstacleController.Instance.CurrentCheckPoint.HideLine); // Example method to check if line should be active
+                line.gameObject.SetActive(!ObstacleController.Instance.CurrentCheckPoint.HideLine); // Example method to check if line should be active
+            }            
         }
         ObstacleController.Instance.UpdateObstacles(Vector3.back * move);
     }
