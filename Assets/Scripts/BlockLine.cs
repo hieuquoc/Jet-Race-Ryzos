@@ -20,7 +20,8 @@ public class BlockLine : MonoBehaviour
 
     public void SpawnObstacleDelayed(float delay)
     {
-        StartCoroutine(SpawnObstacleWithDelay(delay));
+        if(gameObject.activeInHierarchy) // Only spawn if the line is active
+            StartCoroutine(SpawnObstacleWithDelay(delay));
     }
 
     public Vector3 GetLinePoint(int lineIndex)

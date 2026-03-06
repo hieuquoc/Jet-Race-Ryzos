@@ -343,4 +343,5 @@ public struct CheckPoint
     public int SkipLine;
     public int CurrentSkipCount;
     public bool FixedMidpoint;
+    public bool HideLine;
 }

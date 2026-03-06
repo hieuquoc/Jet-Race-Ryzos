@@ -53,6 +53,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 11400000, guid: 6e5d21ffb27e98245b527cc1a4af6384, type: 2}
     Length: 900
     Name: mix blocks
@@ -60,6 +61,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 11400000, guid: e635bc79e66e54c4b8344b24dca49a73, type: 2}
     Length: 1400
     Name: updown block
@@ -67,6 +69,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
     Length: 100
     Name: blank
@@ -74,6 +77,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 11400000, guid: c521326a354a49f4eaa6681819929788, type: 2}
     Length: 600
     Name: transition tunnel
@@ -81,6 +85,7 @@ MonoBehaviour:
     SkipLine: 2147483647
     CurrentSkipCount: 0
     FixedMidpoint: 1
+    HideLine: 1
   - ObstacleSet: {fileID: 11400000, guid: ba1b46ffd781fb64595c76f387e9ea02, type: 2}
     Length: 1600
     Name: triangle
@@ -88,6 +93,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 11400000, guid: 21e8672ceaf0faf468ed47fa90b1073c, type: 2}
     Length: 1100
     Name: updown mix block
@@ -95,6 +101,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 11400000, guid: cc634450d6acf124d8f430775170db35, type: 2}
     Length: 300
     Name: swipe block
@@ -102,6 +109,7 @@ MonoBehaviour:
     SkipLine: 2
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 200
     Name: blocks
@@ -109,6 +117,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: swipe block
@@ -116,6 +125,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: blocks
@@ -123,6 +133,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: swipe block
@@ -130,6 +141,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 300
     Name: block
@@ -137,6 +149,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 1000
     Name: swipe
@@ -144,6 +157,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 100
     Name: blank
@@ -151,6 +165,7 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
   - ObstacleSet: {fileID: 0}
     Length: 280
     Name: gate
@@ -158,3 +173,4 @@ MonoBehaviour:
     SkipLine: 0
     CurrentSkipCount: 0
     FixedMidpoint: 0
+    HideLine: 0
