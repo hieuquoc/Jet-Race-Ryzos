@@ -17,6 +17,7 @@ public class BlockMove : BaseMoveObstacle
     [SerializeField] private int direction = 1;
     [SerializeField] private float recoverSpeed = 1;
     [SerializeField] private bool randomStartPosition = true;
+    public float currentDistance = 0f;
 
 
     void Awake()
@@ -38,34 +39,36 @@ public class BlockMove : BaseMoveObstacle
         float distance = randomStartPosition ? Random.Range(0, MoveDistance) : 0;
         visualTransform.localPosition = startPosition + moveVector.normalized * distance;       
         currentChangeTime = ChangeTime;
-        Debug.Log($"Set up BlockMove at {visualTransform.localPosition} with move vector {moveVector} and distance {distance}"); 
-        direction = 1;
+        direction = Random.Range(-1,1) > 0 ? 1 : -1;
     }
     // Update is called once per frame
     void Update()
     {
-        if (Distance() >= MoveDistance && direction == 1)
+        currentDistance = Distance();
+        if (currentDistance >= MoveDistance && direction == 1)
         {
+            if(direction == 1)
+                direction = -1;
             if(currentChangeTime > 0)
             {
                 currentChangeTime -= Time.deltaTime;
                 if(currentChangeTime <= 0)
                 {
-                    currentChangeTime = ChangeTime;
-                    direction = -1;
+                    currentChangeTime = ChangeTime;                    
                 }
                 return;
-            }
+            }            
         }
-        else if (Distance() <= 0.1f && direction == -1)
+        else if (currentDistance <= 0.1f && direction == -1)
         {
+            if(direction == -1)
+                direction = 1;
             if(currentChangeTime > 0)
             {
                 currentChangeTime -= Time.deltaTime;
                 if(currentChangeTime <= 0)
                 {
                     currentChangeTime = ChangeTime;
-                    direction = 1;
                 }
                 return;
             }

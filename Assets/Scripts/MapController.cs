@@ -83,7 +83,7 @@ public class MapController : MonoBehaviour
                 line.transform.position = new Vector3(line.transform.position.x, line.transform.position.y, lastSpawnedLine.transform.position.z + lineSpacing);
                 RegenerateLineHeights(line.transform);
                 line.ClearObstacle();
-                line.SpawnObstacleDelayed(0.2f); // example set index
+                line.Obstacle = ObstacleController.Instance.SpawnRandom(line);
                 lastSpawnedLine = line;
             }
             line.gameObject.SetActive(!ObstacleController.Instance.CurrentCheckPoint.HideLine); // Example method to check if line should be active

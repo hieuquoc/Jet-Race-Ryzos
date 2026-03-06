@@ -8,21 +8,6 @@ public class BlockLine : MonoBehaviour
     public GameObject Obstacle;
     public List<Transform> Cubes = new List<Transform>();
 
-    public void SpawnObstacle()
-    {
-        if (Obstacle != null)
-        {
-            ObstacleController.Instance.ReturnToPool(Obstacle.gameObject);
-        }
-        Vector3 spawnPosition = GetLinePoint(ObstacleController.Instance.GetNextObstacleLineIndex());
-        Obstacle = ObstacleController.Instance.SpawnRandom(spawnPosition, Quaternion.identity);
-    }
-
-    public void SpawnObstacleDelayed(float delay)
-    {
-        if(gameObject.activeInHierarchy) // Only spawn if the line is active
-            StartCoroutine(SpawnObstacleWithDelay(delay));
-    }
 
     public Vector3 GetLinePoint(int lineIndex)
     {
@@ -30,11 +15,12 @@ public class BlockLine : MonoBehaviour
         return new Vector3(cubePos.x, -10, cubePos.z);
     }
 
-    IEnumerator SpawnObstacleWithDelay(float delay)
+    public Vector3 GetLinePoint(int lineIndex, float heightOffset)
     {
-        yield return new WaitForSeconds(delay);
-        SpawnObstacle();
+        Vector3 cubePos = Cubes[lineIndex].position;
+        return new Vector3(cubePos.x, heightOffset, cubePos.z);
     }
+
 
     public void ClearObstacle()
     {

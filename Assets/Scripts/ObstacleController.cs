@@ -31,6 +31,7 @@ public class ObstacleController : MonoBehaviour
     {
         InitializePools();
         GenerateObstacleLineIndexs(MapController.CubeMapWidth, MapController.CubeMapHeight);
+        ConvertCheckPointLengthToDistance();
     }
 
     void InitializePools()
@@ -100,12 +101,13 @@ public class ObstacleController : MonoBehaviour
         return obj;
     }
 
-    public GameObject SpawnRandom(Vector3 position, Quaternion rotation){
+    public GameObject SpawnRandom(BlockLine line){
         if(IsSkippingObstacle())
         {
             return null;
-        }
-        return SpawnRandomFromSet(_currentCheckPoint, position, rotation);
+        } 
+        Vector3 position = line.GetLinePoint(GetNextObstacleLineIndex());       
+        return SpawnRandomFromSet(_currentCheckPoint, position, Quaternion.identity);
     }
 
     GameObject GetFromPool(GameObject prefab)
@@ -299,6 +301,18 @@ public class ObstacleController : MonoBehaviour
         UpdateCheckPoint();
     }
 
+    public void ConvertCheckPointLengthToDistance()
+    {
+        float distance = 0;
+        for(int i = 0; i < CheckPoints.Length; i++)
+        {
+            var cp = CheckPoints[i];
+            distance += cp.Length;
+            cp.CheckPointDistance = distance;
+            CheckPoints[i] = cp;
+        }
+    }
+
     public void UpdateCheckPoint()
     {
         int checkPointIndex = GetCheckPointIndexByDistance();
@@ -324,6 +338,8 @@ public class ObstacleController : MonoBehaviour
         }
         return 0;
     }
+
+
 }
 
 [Serializable]
@@ -336,6 +352,7 @@ public class ObstacleInstance : MonoBehaviour
 [System.Serializable]
 public struct CheckPoint
 {
+    public float CheckPointDistance;
     public ObstacleSet ObstacleSet;
     public float Length;
     public string Name;
