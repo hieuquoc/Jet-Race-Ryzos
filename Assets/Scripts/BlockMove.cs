@@ -71,6 +71,14 @@ public class BlockMove : BaseMoveObstacle
             }
         }
         visualTransform.localPosition += moveVector * curMoveSpeed * direction * Time.deltaTime;
+        if(moveVector.x != 0)
+        {
+            SnapPositionX();
+        }
+        else if(moveVector.y != 0)
+        {
+            SnapPositionY();
+        }
     }
 
     public float Distance()
@@ -83,11 +91,42 @@ public class BlockMove : BaseMoveObstacle
         {
             return Mathf.Abs(visualTransform.localPosition.y - startPosition.y);
         }
-        else if(moveVector.z != 0)
-        {
-            return Mathf.Abs(visualTransform.localPosition.z - startPosition.z);
-        }
         return 0f;
+    }
+
+    public void SnapPositionX()
+    {
+        Vector3 maxPos = MaxPosition();
+        if(startPosition.x < maxPos.x)
+        {
+            float x = Mathf.Clamp(visualTransform.localPosition.x, startPosition.x, maxPos.x);
+            visualTransform.localPosition = new Vector3(x, visualTransform.localPosition.y, visualTransform.localPosition.z);
+        }
+        else
+        {
+            float x = Mathf.Clamp(visualTransform.localPosition.x, maxPos.x, startPosition.x);
+            visualTransform.localPosition = new Vector3(x, visualTransform.localPosition.y, visualTransform.localPosition.z);
+        }
+    }
+
+    public void SnapPositionY()
+    {
+        Vector3 maxPos = MaxPosition();
+        if(startPosition.y < maxPos.y)
+        {
+            float y = Mathf.Clamp(visualTransform.localPosition.y, startPosition.y, maxPos.y);
+            visualTransform.localPosition = new Vector3(visualTransform.localPosition.x, y, visualTransform.localPosition.z);
+        }
+        else
+        {
+            float y = Mathf.Clamp(visualTransform.localPosition.y, maxPos.y, startPosition.y);
+            visualTransform.localPosition = new Vector3(visualTransform.localPosition.x, y, visualTransform.localPosition.z);
+        }
+    }
+
+    public Vector3 MaxPosition()
+    {
+        return startPosition + moveVector.normalized * MoveDistance;
     }
 }
 
