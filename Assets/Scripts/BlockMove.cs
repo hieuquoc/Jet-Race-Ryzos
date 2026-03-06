@@ -13,9 +13,9 @@ public class BlockMove : BaseMoveObstacle
     [SerializeField] private Transform visualTransform;
     [SerializeField] private bool autoStart = false;
     [SerializeField] private Vector3 moveVector;
-    [SerializeField] private float curMoveSpeed = 0f;
     [SerializeField] private float currentChangeTime = 0f;
     [SerializeField] private int direction = 1;
+    [SerializeField] private float recoverSpeed = 1;
 
 
     void Awake()
@@ -36,7 +36,6 @@ public class BlockMove : BaseMoveObstacle
         base.SetUp();
         float distance = Random.Range(0, MoveDistance);
         visualTransform.localPosition = startPosition + moveVector.normalized * distance;       
-        curMoveSpeed = Random.Range(MoveSpeed * 0.5f, MoveSpeed);
         currentChangeTime = ChangeTime;
         Debug.Log($"Set up BlockMove at {visualTransform.localPosition} with move vector {moveVector} and distance {distance}"); 
         direction = 1;
@@ -70,7 +69,10 @@ public class BlockMove : BaseMoveObstacle
                 return;
             }
         }
-        visualTransform.localPosition += moveVector * curMoveSpeed * direction * Time.deltaTime;
+        if(direction > 0)
+            visualTransform.localPosition += moveVector * MoveSpeed * direction * Time.deltaTime;
+            else
+            visualTransform.localPosition += moveVector * MoveSpeed * recoverSpeed * direction * Time.deltaTime;
         if(moveVector.x != 0)
         {
             SnapPositionX();

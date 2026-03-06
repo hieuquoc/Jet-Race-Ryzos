@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obstacles:
   - {fileID: 7119118390933561652, guid: c0dce4f90c8ade8459d299d2c0e9fda6, type: 3}
-  - {fileID: 6559157191249807788, guid: 7c73f702bb1097345a19b6450310a128, type: 3}
-  - {fileID: 5351662297175152595, guid: ed1ba2f813f5e5246bb3f1fe7fe09bef, type: 3}
+  - {fileID: 1580819884914392200, guid: be3d0d7668c81fa48a55446e55c1289f, type: 3}
+  - {fileID: 7005758025841258668, guid: a9b7346e7acc39f4cb00b973143fdb21, type: 3}
   PoolSize: 5
