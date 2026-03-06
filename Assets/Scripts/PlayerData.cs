@@ -8,8 +8,7 @@ public static class PlayerData
     public const string CoinsKey = "Coins";
     public const string OwnedShipsKey = "1";
     public const string SelectedShipKey = "SelectedShip";
-    public static float RunDistance = 0;
-    public static float LoopStartDistance = 0;
+    
 
     public static int HighScore
     {
