@@ -8,6 +8,7 @@ using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 public class InputController : MonoBehaviour
 {
     public Transform Camera;
+    public SpaceShip spaceShip;
     [SerializeField] private float moveSpeed = 10f;
 
     private int holdDirection = 0; // -1 trái, 1 phải, 0 không giữ
@@ -62,6 +63,7 @@ public class InputController : MonoBehaviour
         {
             holdDirection = 0;
         }
+        spaceShip.Direction = Vector3.right * holdDirection;
     }
 }
 

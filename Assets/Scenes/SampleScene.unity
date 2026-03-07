@@ -720,7 +720,7 @@ MonoBehaviour:
   cubeMapHeight: 40
   CubePrefab: {fileID: 1030649393}
   lineSpacing: 1
-  moveSpeed: 20
+  moveSpeed: 50
   linesParent: {fileID: 670042676}
   isMoving: 1
   _loopStartDistance: 0
@@ -753,6 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Camera: {fileID: 963194228}
+  spaceShip: {fileID: 1741821436}
   moveSpeed: 10
 --- !u!1 &705507993
 GameObject:
@@ -1881,6 +1882,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1741821435}
+  - component: {fileID: 1741821436}
   m_Layer: 0
   m_Name: SpaceShip
   m_TagString: Untagged
@@ -1903,6 +1905,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 963194228}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1741821436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741821434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9ee949d06776a418a797c5d6f8930c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Direction: {x: 0, y: 0, z: 0}
+  MaxAngle: 30
+  RotationSpeed: 200
 --- !u!1 &2014029253
 GameObject:
   m_ObjectHideFlags: 0
