@@ -69,6 +69,7 @@ public class MapController : MonoBehaviour
         float move = moveSpeed * Time.deltaTime;
         RunDistance += move;
         LoopStartDistance += move;
+        UIManager.Instance.DistanceText.SetText($"{RunDistance:F1}m");
         if(LoopStartDistance > ObstacleController.LoopLength)
         {
             LoopStartDistance %= ObstacleController.LoopLength;
