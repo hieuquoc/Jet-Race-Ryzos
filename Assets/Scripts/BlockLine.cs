@@ -28,7 +28,7 @@ namespace ZyroX
     {
         if (Obstacle != null)
         {
-            ObstacleController.Instance.ReturnToPool(Obstacle.gameObject);
+            ObstacleController.Instance.ReturnObstacle(Obstacle.gameObject);
             Obstacle = null;
         }
     }

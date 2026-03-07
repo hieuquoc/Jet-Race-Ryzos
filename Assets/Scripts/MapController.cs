@@ -134,6 +134,19 @@ namespace ZyroX
             cube.localPosition = lp;
         }
     }
+
+    public void StartGame()
+    {
+        isMoving = true;
+        RunDistance = 0f;
+        LoopStartDistance = 0f;
+        UIManager.Instance.DistanceText.SetText("0.0m");
+        foreach (var line in lines)
+        {
+            line.ClearObstacle();
+            line.gameObject.SetActive(true);
+        }
+    }
 }
 
 }
