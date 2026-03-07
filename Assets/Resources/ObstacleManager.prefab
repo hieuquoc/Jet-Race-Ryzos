@@ -105,7 +105,7 @@ MonoBehaviour:
     Length: 1100
     Name: updown mix block
     SingleObstacle: 0
-    SkipLine: 0
+    SkipLine: 3
     CurrentSkipCount: 0
     FixedMidpoint: 0
     HideLine: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
     Length: 300
     Name: swipe block
     SingleObstacle: 0
-    SkipLine: 2
+    SkipLine: 5
     CurrentSkipCount: 0
     FixedMidpoint: 0
     HideLine: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
     Length: 300
     Name: swipe block
     SingleObstacle: 0
-    SkipLine: 0
+    SkipLine: 5
     CurrentSkipCount: 0
     FixedMidpoint: 0
     HideLine: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
     Length: 300
     Name: swipe block
     SingleObstacle: 0
-    SkipLine: 0
+    SkipLine: 5
     CurrentSkipCount: 0
     FixedMidpoint: 0
     HideLine: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
     Length: 1000
     Name: swipe
     SingleObstacle: 0
-    SkipLine: 0
+    SkipLine: 5
     CurrentSkipCount: 0
     FixedMidpoint: 0
     HideLine: 0
