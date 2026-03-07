@@ -95,14 +95,6 @@ public class ObstacleController : MonoBehaviour
             }
             //Debug.Log($"Spawned obstacle from checkpoint {checkPoint}  : {obj.name} at {position}");
         }
-        if(CurrentCheckPoint.SingleObstacle)
-        {
-            if(curBigObstacle != null)
-            {
-                ReturnToPool(curBigObstacle);
-            }
-            curBigObstacle = obj;
-        }
         
         activeObstacles.Add(obj);
         if(CurrentCheckPoint.SingleObstacle)
@@ -146,6 +138,13 @@ public class ObstacleController : MonoBehaviour
     public void ReturnToPool(GameObject obj)
     {
         if (obj == null) return;
+        CheckPoint currentCP = CurrentCheckPoint;
+         float checkpo = 0.5f * spawnDistance; // buffer distance to prevent immediate respawn
+        if(curBigObstacle != null && MapController.LoopStartDistance > currentCP.CheckPointDistance - currentCP.Length)
+         {
+             ReturnToPool(curBigObstacle);
+             curBigObstacle = null;
+         }    
         activeObstacles.Remove(obj);
         var tag = obj.GetComponent<ObstacleInstance>();
         if (tag == null || tag.Prefab == null)
@@ -292,12 +291,7 @@ public class ObstacleController : MonoBehaviour
         if (checkpointIndex < 0 || checkpointIndex >= CheckPoints.Length) return;
         var cp = CheckPoints[checkpointIndex];
         cp.CurrentSkipCount = 0;
-        CheckPoints[checkpointIndex] = cp;
-        if(curBigObstacle != null && !CheckPoints[lastCheckpointIndex].SingleObstacle)
-         {
-             ReturnToPool(curBigObstacle);
-             curBigObstacle = null;
-         }        
+        CheckPoints[checkpointIndex] = cp;    
     }
 
     public void UpdateObstacles(Vector3 move)
@@ -340,7 +334,7 @@ public class ObstacleController : MonoBehaviour
         for (int i = 0; i < CheckPoints.Length; i++)
         {
             lengthCovered += CheckPoints[i].Length;
-            if (MapController.LoopStartDistance + spawnDistance<= lengthCovered)
+            if (MapController.LoopStartDistance <= lengthCovered)
             {
                 return i;
             }

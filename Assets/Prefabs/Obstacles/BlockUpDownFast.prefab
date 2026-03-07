@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 30
   MoveDistance: 10
-  ChangeTime: 1
+  ChangeTime: 3
   startPosition: {x: 0, y: 0, z: 0}
   visualTransform: {fileID: 7142969955371922746}
   autoStart: 0
@@ -161,6 +161,8 @@ MonoBehaviour:
   currentChangeTime: 0
   direction: 1
   recoverSpeed: 0.35
+  randomStartPosition: 1
+  currentDistance: 0
 --- !u!1 &4631677719571937937
 GameObject:
   m_ObjectHideFlags: 0
