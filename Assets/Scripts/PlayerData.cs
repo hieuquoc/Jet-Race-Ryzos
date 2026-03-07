@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class PlayerData 
+namespace ZyroX
+{
+    public static class PlayerData 
 {
     public const string HighScoreKey = "HighScore";
     public const string CoinsKey = "Coins";
@@ -78,4 +80,6 @@ public static class PlayerData
         }
         PlayerPrefs.SetString(OwnedShipsKey, ownedShips);
     }
+}
+
 }

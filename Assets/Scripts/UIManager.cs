@@ -3,32 +3,36 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+namespace ZyroX
 {
-    public static UIManager Instance;
-    public TextMeshProUGUI DistanceText;
-
-    void Awake()
+    public class UIManager : MonoBehaviour
     {
-        if (Instance == null)
+        public static UIManager Instance;
+        public TextMeshProUGUI DistanceText;
+
+        void Awake()
         {
-            Instance = this;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Destroy(gameObject);
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

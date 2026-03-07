@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockLine : MonoBehaviour
+namespace ZyroX
+{
+    public class BlockLine : MonoBehaviour
 {
     public GameObject Obstacle;
     public List<Transform> Cubes = new List<Transform>();
@@ -46,4 +48,6 @@ public class BlockLine : MonoBehaviour
                 Cubes.Add(cube.transform);
             }
     }
+}
+
 }

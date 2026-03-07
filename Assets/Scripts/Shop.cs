@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+namespace ZyroX
+{
+    public class Shop : MonoBehaviour
 {
     public ShipList shipList;
     public Transform ShipView;
@@ -52,4 +54,6 @@ public class Shop : MonoBehaviour
             Debug.Log("Not enough coins to buy " + ship.Name);
         }
     }
+}
+
 }

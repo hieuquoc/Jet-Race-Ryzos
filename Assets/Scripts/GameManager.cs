@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class GameManager : MonoBehaviour
+namespace ZyroX
+{
+    public class GameManager : MonoBehaviour
 {
     public string CurrentShipId;
     public Transform SpaceShip;
@@ -48,3 +49,6 @@ public class GameManager : MonoBehaviour
     }
     
 }
+
+}
+

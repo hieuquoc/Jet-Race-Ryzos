@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleController : MonoBehaviour
+namespace ZyroX
+{
+    public class ObstacleController : MonoBehaviour
 {
     public Dictionary<GameObject, Queue<GameObject>> obstaclePools = new Dictionary<GameObject, Queue<GameObject>>();
     public List<int> ObstacleLineIndexs = new List<int>();
@@ -364,4 +366,6 @@ public struct CheckPoint
     public int CurrentSkipCount;
     public bool FixedMidpoint;
     public bool HideLine;
+}
+
 }

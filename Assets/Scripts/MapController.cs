@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapController : MonoBehaviour
+namespace ZyroX
+{
+    public class MapController : MonoBehaviour
 {
     [SerializeField] private float[] cubeHeights;
     [SerializeField] private float cubeSpacing = 2f;
@@ -132,6 +134,8 @@ public class MapController : MonoBehaviour
             cube.localPosition = lp;
         }
     }
+}
+
 }
 
 

@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(MapController))]
+namespace ZyroX{
+    [CustomEditor(typeof(MapController))]
 public class MapControllerEditor : Editor
 {
     private float inputValue = 0f;
@@ -70,3 +71,6 @@ public class MapControllerEditor : Editor
         Debug.Log($"RunDistance and LoopStartDistance set to {value}");
     }
 }
+
+}
+

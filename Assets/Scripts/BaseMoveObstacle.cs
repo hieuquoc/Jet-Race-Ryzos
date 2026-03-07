@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMoveObstacle : MonoBehaviour
+namespace ZyroX
 {
-    public virtual void SetUp()
+    public class BaseMoveObstacle : MonoBehaviour
     {
-        // base setup logic if needed
+        public virtual void SetUp()
+        {
+            // base setup logic if needed
+        }
     }
 }
+
