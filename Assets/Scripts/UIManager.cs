@@ -10,6 +10,7 @@ namespace ZyroX
         public static UIManager Instance;
         public TextMeshProUGUI DistanceText;
 
+
         void Awake()
         {
             if (Instance == null)
@@ -33,6 +34,13 @@ namespace ZyroX
         {
 
         }
+    }
+
+    public enum PanelType
+    {
+        LookOut,
+        Bonus,
+        Effects
     }
 
 }
