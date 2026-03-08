@@ -36,11 +36,6 @@ namespace ZyroX
         }
     }
 
-    public enum PanelType
-    {
-        LookOut,
-        Bonus,
-        Effects
-    }
+
 
 }

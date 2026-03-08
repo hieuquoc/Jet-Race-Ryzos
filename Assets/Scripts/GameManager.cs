@@ -11,6 +11,7 @@ namespace ZyroX
         public static GameManager Instance;
         public GameObject ExplosionVfx;
         public static int LastRandomLineIndex = 0;
+        public static int RunCoin = 0;
 
         private Dictionary<string, GameObject> ship = new Dictionary<string, GameObject>();
 
@@ -55,17 +56,26 @@ namespace ZyroX
         {
             MapController.Instance.StartGame();
             ObstacleController.Instance.Reset();
+            EffectController.Instance.Reset();
             ExplosionVfx.SetActive(false);
+            RunCoin = 0;
         }
 
         public void GameOver()
         {
             MapController.Instance.GameOver();
             ship[CurrentShipId].SetActive(false);
+            EffectController.Instance.Reset();
             if (ExplosionVfx != null)
             {
                 ExplosionVfx.SetActive(true);
             }
+        }
+
+        public void AddCoin(int coin)
+        {
+            PlayerData.AddCoins(coin);
+            RunCoin += coin;
         }
     }
 

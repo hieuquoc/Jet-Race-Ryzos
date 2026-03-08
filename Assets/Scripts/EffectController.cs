@@ -7,11 +7,20 @@ namespace ZyroX
     public class EffectController : MonoBehaviour
     {
         public bool IsActive;
+        public static EffectController Instance;
         public Collider ShipCollider;
         public ParticleSystem ShieldEffect;
         public List<EffectData> ActiveEffects = new List<EffectData>();
         public float SpeedBoostMultiplier = 1.5f;
         public float SlowMultiplier = 0.5f;
+        [SerializeField] private float SpeedBoostDuration = 5f;
+        [SerializeField] private float ShieldDuration = 5f;
+        [SerializeField] private float SlowDuration = 5f;
+
+        void Awake()
+        {
+            Instance = this;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -55,9 +64,16 @@ namespace ZyroX
             }
         }
 
-        public void AddEffect(EffectType type, float duration)
+        public void AddEffect(EffectType type)
         {
             EffectData existingEffect = ActiveEffects.Find(e => e.Type == type);
+            float duration = type switch
+            {
+                EffectType.SpeedBoost => SpeedBoostDuration,
+                EffectType.Shield => ShieldDuration,
+                EffectType.Slow => SlowDuration,
+                _ => 0f
+            };
             if (existingEffect.Type != 0)
             {
                 existingEffect.Duration = duration;
@@ -70,12 +86,15 @@ namespace ZyroX
                 {
                     case EffectType.SpeedBoost:
                         MapController.Instance.SetSpeedMultiplier(SpeedBoostMultiplier);
+                        GameManager.Instance.AddCoin(300);
                         break;
                     case EffectType.Shield:
                         ActiveShield(true);
+                        GameManager.Instance.AddCoin(300);
                         break;
                     case EffectType.Slow:
                         MapController.Instance.SetSpeedMultiplier(SlowMultiplier);
+                        GameManager.Instance.AddCoin(300);
                         // Handle slow logic
                         break;
                 }
@@ -97,6 +116,14 @@ namespace ZyroX
                     ShieldEffect.Stop();
                 }
             }
+        }
+
+        public void Reset()
+        {
+            ActiveEffects.Clear();
+            MapController.Instance.SetSpeedMultiplier(1f);
+            ActiveShield(false);
+            IsActive = false;
         }
     }
 

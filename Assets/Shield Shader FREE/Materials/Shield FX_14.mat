@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shield FX_14
-  m_Shader: {fileID: -6465566751694194690, guid: 7273ade5faebcb9448394e807492b217,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 7273ade5faebcb9448394e807492b217, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -81,9 +80,9 @@ Material:
     - _Enable_Texture: 1
     - _Float: 0.509
     - _Opacity_Global: 1
-    - _Opacity_On_Centre: 0.02
+    - _Opacity_On_Centre: 0.149
     - _Opacity_On_Side: 1
-    - _Power: 4
+    - _Power: 1.66
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Speed: 1

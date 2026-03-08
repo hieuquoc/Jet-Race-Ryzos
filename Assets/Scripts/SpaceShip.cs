@@ -21,7 +21,22 @@ namespace ZyroX
 
         void OnTriggerEnter(Collider other)
         {
-            Debug.Log("SpaceShip collided with " + other.gameObject.name);
+            switch (other.gameObject.tag)
+            {
+                case "Speed":
+                    EffectController.Instance.AddEffect(EffectType.SpeedBoost);
+                    return;
+                case "Shield":
+                    EffectController.Instance.AddEffect(EffectType.Shield);
+                    return;
+                case "Slow":
+                    EffectController.Instance.AddEffect(EffectType.Slow);
+                    return;
+                case "Bonus":
+                    GameManager.Instance.AddCoin(500);
+                    return;
+                Debug.Log("SpaceShip collided with " + other.gameObject.name);
+            }
             GameManager.Instance.GameOver();
         }
     }
