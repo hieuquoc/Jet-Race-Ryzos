@@ -25,7 +25,6 @@ namespace ZyroX
         void Start()
         {
             CurrentShipId = PlayerData.SelectedShip;
-            LoadShip(CurrentShipId);
         }
 
         // Update is called once per frame
@@ -54,17 +53,26 @@ namespace ZyroX
 
         public void StartGame()
         {
-            MapController.Instance.StartGame();
+            LoadShip(CurrentShipId);            
             ObstacleController.Instance.Reset();
             EffectController.Instance.Reset();
             ExplosionVfx.SetActive(false);
             RunCoin = 0;
+            StartCoroutine(StartGameCoroutine());
+        }
+
+        IEnumerator StartGameCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
+            SpaceShipPoint.gameObject.SetActive(true);
+            MapController.Instance.StartGame();
         }
 
         public void GameOver()
         {
             MapController.Instance.GameOver();
             ship[CurrentShipId].SetActive(false);
+            SpaceShipPoint.gameObject.SetActive(false);
             EffectController.Instance.Reset();
             if (ExplosionVfx != null)
             {

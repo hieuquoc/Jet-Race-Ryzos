@@ -15,7 +15,7 @@ namespace ZyroX
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float speedMultiplier = 1f;
     [SerializeField] private Transform linesParent;
-    [SerializeField] private bool isMoving = true;
+    [SerializeField] private bool isMoving = false;
     [SerializeField] float _loopStartDistance = 0f;
     [SerializeField] private float _runDistance = 0f;
 

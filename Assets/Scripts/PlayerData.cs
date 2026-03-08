@@ -10,6 +10,7 @@ namespace ZyroX
     public const string CoinsKey = "Coins";
     public const string OwnedShipsKey = "1";
     public const string SelectedShipKey = "SelectedShip";
+    public const string RecordDistanceKey = "RecordDistance";
     
 
     public static int HighScore
@@ -22,6 +23,12 @@ namespace ZyroX
     {
         get => PlayerPrefs.GetInt(CoinsKey, 0);
         set => PlayerPrefs.SetInt(CoinsKey, value);
+    }
+
+    public static float RecordDistance
+    {
+        get => PlayerPrefs.GetFloat(RecordDistanceKey, 0f);
+        set => PlayerPrefs.SetFloat(RecordDistanceKey, value);
     }
 
     public static void AddCoins(int amount)
