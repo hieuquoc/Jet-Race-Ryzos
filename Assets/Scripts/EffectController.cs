@@ -9,7 +9,7 @@ namespace ZyroX
         public bool IsActive;
         public static EffectController Instance;
         public Collider ShipCollider;
-        public ParticleSystem ShieldEffect;
+        public GameObject ShieldEffect;
         public List<EffectData> ActiveEffects = new List<EffectData>();
         public float SpeedBoostMultiplier = 1.5f;
         public float SlowMultiplier = 0.5f;
@@ -109,11 +109,11 @@ namespace ZyroX
             {
                 if (active)
                 {
-                    ShieldEffect.Play();
+                    ShieldEffect.SetActive(true);
                 }
                 else
                 {
-                    ShieldEffect.Stop();
+                    ShieldEffect.SetActive(false);
                 }
             }
         }
