@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4172060265831151303}
   - component: {fileID: 559323346777125357}
   - component: {fileID: 6863716958404215316}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 6439692277453904893}
   - component: {fileID: 7550801034012355415}
   - component: {fileID: 8291500757302591790}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6437108557040217449}
   - component: {fileID: 8525237594743811129}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BlockUpDownSimple1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,9 +258,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 3
   MoveDistance: 10
+  ChangeTime: 0
   startPosition: {x: 0, y: 0, z: 0}
-  phaseOne: 1
   visualTransform: {fileID: 0}
-  currentMoveVector: {x: 0, y: 0, z: 0}
   autoStart: 0
   moveVector: {x: 0, y: 1, z: 0}
+  currentChangeTime: 0
+  direction: 1
+  recoverSpeed: 1
+  randomStartPosition: 1
+  currentDistance: 0

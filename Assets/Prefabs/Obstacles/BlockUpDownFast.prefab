@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4962629952609060777}
   - component: {fileID: 8130125632069729258}
   - component: {fileID: 6075682912111606535}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3471140269391295110}
   - component: {fileID: 3918439338973113321}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BlockUpDownFast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 425853589254943755}
   - component: {fileID: 7148561897117926529}
   - component: {fileID: 8560641131859418878}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

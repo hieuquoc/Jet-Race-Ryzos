@@ -18,6 +18,12 @@ namespace ZyroX
             currentAngle = Mathf.MoveTowards(currentAngle, targetAngle, RotationSpeed * Time.deltaTime);
             transform.localRotation = Quaternion.Euler(0f, 0f, currentAngle);
         }
+
+        void OnTriggerEnter(Collider other)
+        {
+            Debug.Log("SpaceShip collided with " + other.gameObject.name);
+            GameManager.Instance.GameOver();
+        }
     }
 }
 

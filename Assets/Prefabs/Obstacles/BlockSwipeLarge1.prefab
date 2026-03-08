@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9166037219518321772}
   - component: {fileID: 3673170853230326372}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BlockSwipeLarge1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 301753795566859812}
   - component: {fileID: 1498790100635548535}
   - component: {fileID: 5886012840545148729}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Block1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

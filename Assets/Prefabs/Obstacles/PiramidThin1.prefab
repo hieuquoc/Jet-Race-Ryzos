@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 299595716796754771}
   - component: {fileID: 7155315761551024363}
   - component: {fileID: 642427482140852889}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GM-Pyramid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7707801863656794649}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PiramidThin1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

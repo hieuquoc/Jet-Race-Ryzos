@@ -8,12 +8,15 @@ namespace ZyroX
         public string CurrentShipId;
         public Transform SpaceShip;
         public Transform SpaceShipPoint;
+        public static GameManager Instance;
+        public GameObject ExplosionVfx;
         public static int LastRandomLineIndex = 0;
 
         private Dictionary<string, GameObject> ship = new Dictionary<string, GameObject>();
 
         private void Awake()
         {
+            Instance = this;
             Instantiate(Resources.Load<GameObject>("ObstacleManager"), Vector3.zero, Quaternion.identity);
         }
 
@@ -52,6 +55,17 @@ namespace ZyroX
         {
             MapController.Instance.StartGame();
             ObstacleController.Instance.Reset();
+            ExplosionVfx.SetActive(false);
+        }
+
+        public void GameOver()
+        {
+            MapController.Instance.GameOver();
+            ship[CurrentShipId].SetActive(false);
+            if (ExplosionVfx != null)
+            {
+                ExplosionVfx.SetActive(true);
+            }
         }
     }
 
