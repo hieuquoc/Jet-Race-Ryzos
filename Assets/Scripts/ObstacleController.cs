@@ -34,7 +34,7 @@ namespace ZyroX
         void Start()
         {
             InitializePools();
-            GenerateObstacleLineIndexs(MapController.CubeMapWidth, MapController.CubeMapHeight);
+            GenerateObstacleLineIndexs(MapController.CubeMapWidth, 100);
             ConvertCheckPointLengthToDistance();
             spawnDistance = MapController.CubeSpacing * MapController.CubeMapHeight;
         }

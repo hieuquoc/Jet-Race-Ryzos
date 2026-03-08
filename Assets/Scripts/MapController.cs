@@ -151,6 +151,7 @@ namespace ZyroX
         foreach (var line in lines)
         {
             line.gameObject.SetActive(true);
+            line.Obstacle = null;
         }
     }
 
