@@ -13,6 +13,7 @@ namespace ZyroX
     public GameObject CubePrefab;
     [SerializeField] private float lineSpacing = 10f;
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float speedMultiplier = 1f;
     [SerializeField] private Transform linesParent;
     [SerializeField] private bool isMoving = true;
     [SerializeField] float _loopStartDistance = 0f;
@@ -68,7 +69,7 @@ namespace ZyroX
     {
         if (!isMoving) return;
 
-        float move = moveSpeed * Time.deltaTime;
+        float move = moveSpeed * speedMultiplier * Time.deltaTime;
         RunDistance += move;
         LoopStartDistance += move;
         UIManager.Instance.DistanceText.SetText($"{RunDistance:F1}m");
@@ -133,6 +134,11 @@ namespace ZyroX
             lp.y = GetRandomHeight();
             cube.localPosition = lp;
         }
+    }
+
+    public void SetSpeedMultiplier(float newMultiplier)
+    {
+        speedMultiplier = newMultiplier;
     }
 
     public void StartGame()
