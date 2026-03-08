@@ -351,10 +351,11 @@ namespace ZyroX
 
         public void Reset()
         {
-            foreach (var obj in activeObstacles)
+            for (int i = activeObstacles.Count - 1; i >= 0; i--)
             {
-                if (obj != null) ReturnToPool(obj);
+                if (activeObstacles[i] != null) ReturnToPool(activeObstacles[i]);
             }
+            activeObstacles.Clear();
             if (curBigObstacle != null)
             {
                 ReturnToPool(curBigObstacle);

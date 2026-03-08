@@ -9,6 +9,7 @@ namespace ZyroX
     {
         public static UIManager Instance;
         public TextMeshProUGUI DistanceText;
+        public HomeUI HomeUI;
 
 
         void Awake()
@@ -26,7 +27,7 @@ namespace ZyroX
         // Start is called before the first frame update
         void Start()
         {
-
+            HomeUI.Show();
         }
 
         // Update is called once per frame

@@ -53,19 +53,24 @@ namespace ZyroX
 
         public void StartGame()
         {
-            LoadShip(CurrentShipId);            
-            ObstacleController.Instance.Reset();
+            LoadShip(CurrentShipId);    
+            MapController.Instance.Stop();        
             EffectController.Instance.Reset();
             ExplosionVfx.SetActive(false);
-            RunCoin = 0;
+            RunCoin = 0;            
+            
             StartCoroutine(StartGameCoroutine());
         }
 
         IEnumerator StartGameCoroutine()
         {
+            yield return new WaitForSeconds(0.5f);
+            Debug.Log("Map controller move" + MapController.IsMoving);
+            ObstacleController.Instance.Reset();
             yield return new WaitForSeconds(1f);
             SpaceShipPoint.gameObject.SetActive(true);
             MapController.Instance.StartGame();
+            Debug.Log("Map controller move" + MapController.IsMoving);
         }
 
         public void GameOver()

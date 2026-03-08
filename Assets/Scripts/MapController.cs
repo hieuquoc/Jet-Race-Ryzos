@@ -37,6 +37,8 @@ namespace ZyroX
         set => Instance._loopStartDistance = value;
     }
 
+    public static bool IsMoving => Instance.isMoving;
+
     public static MapController Instance;
 
     void Awake()
@@ -67,8 +69,8 @@ namespace ZyroX
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("time: " + Time.time + ", Map move: " + MapController.Instance.isMoving);
         if (!isMoving) return;
-
         float move = moveSpeed * speedMultiplier * Time.deltaTime;
         RunDistance += move;
         LoopStartDistance += move;
@@ -154,6 +156,11 @@ namespace ZyroX
     }
 
     public void GameOver()
+    {
+        isMoving = false;
+    }
+
+    public void Stop()
     {
         isMoving = false;
     }

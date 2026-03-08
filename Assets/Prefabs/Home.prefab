@@ -1074,3 +1074,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animDuration: 0.25
+  HighScoreText: {fileID: 8342187260152009362}
