@@ -69,7 +69,6 @@ namespace ZyroX
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("time: " + Time.time + ", Map move: " + MapController.Instance.isMoving);
         if (!isMoving) return;
         float move = moveSpeed * speedMultiplier * Time.deltaTime;
         RunDistance += move;

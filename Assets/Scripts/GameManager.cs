@@ -64,12 +64,13 @@ namespace ZyroX
 
         IEnumerator StartGameCoroutine()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
             Debug.Log("Map controller move" + MapController.IsMoving);
             ObstacleController.Instance.Reset();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             SpaceShipPoint.gameObject.SetActive(true);
             MapController.Instance.StartGame();
+            InputController.Instance.SetInputEnabled(true);
             Debug.Log("Map controller move" + MapController.IsMoving);
         }
 

@@ -12,7 +12,20 @@ namespace ZyroX
         public Transform Camera;
         public SpaceShip spaceShip;
         [SerializeField] private float moveSpeed = 10f;
+        [SerializeField] private bool isInputEnabled = false;
+        public static InputController Instance;
 
+        void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
         private int holdDirection = 0; // -1 trái, 1 phải, 0 không giữ
 
         void OnEnable()
@@ -33,6 +46,7 @@ namespace ZyroX
 
         void Update()
         {
+            if (!isInputEnabled) return;
             HandleInput();
 
             if (holdDirection != 0 && Camera != null)
@@ -66,6 +80,11 @@ namespace ZyroX
                 holdDirection = 0;
             }
             spaceShip.Direction = Vector3.right * holdDirection;
+        }
+
+        public void SetInputEnabled(bool enabled)
+        {
+            isInputEnabled = enabled;
         }
     }
 }
