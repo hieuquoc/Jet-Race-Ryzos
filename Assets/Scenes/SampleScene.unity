@@ -238,11 +238,11 @@ MonoBehaviour:
   - -8.5
   - -10.5
   cubeSpacing: 1
-  cubeMapWidth: 30
+  cubeMapWidth: 40
   cubeMapHeight: 40
   CubePrefab: {fileID: 1030649393}
   lineSpacing: 1
-  moveSpeed: 50
+  moveSpeed: 60
   speedMultiplier: 1
   linesParent: {fileID: 670042676}
   isMoving: 1
@@ -1326,6 +1326,10 @@ PrefabInstance:
     - target: {fileID: 3220284923784151283, guid: 4143ed12e0184e64c983dc6bf2bcfcbb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -392.1795
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524117382311336465, guid: 4143ed12e0184e64c983dc6bf2bcfcbb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00048828125
       objectReference: {fileID: 0}
     - target: {fileID: 3546440741186622142, guid: 4143ed12e0184e64c983dc6bf2bcfcbb, type: 3}
       propertyPath: m_AnchorMax.y

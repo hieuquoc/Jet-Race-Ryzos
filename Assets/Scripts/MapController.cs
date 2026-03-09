@@ -19,6 +19,7 @@ namespace ZyroX
     [SerializeField] float _loopStartDistance = 0f;
     [SerializeField] private float _runDistance = 0f;
 
+
     private List<BlockLine> lines = new List<BlockLine>();
     private BlockLine lastSpawnedLine;
     private float cubeDepth = 1f;
@@ -85,7 +86,7 @@ namespace ZyroX
 
             if (line.transform.position.z < 0f)
             {
-                line.transform.position = new Vector3(line.transform.position.x, line.transform.position.y, lastSpawnedLine.transform.position.z + lineSpacing);
+                line.transform.position = new Vector3(GetXOffSetPlayerPosition(), line.transform.position.y, lastSpawnedLine.transform.position.z + lineSpacing);
                 RegenerateLineHeights(line.transform);
                 line.ClearObstacle();
                 line.Obstacle = ObstacleController.Instance.SpawnRandom(line);
@@ -95,6 +96,11 @@ namespace ZyroX
         }
         ObstacleController.Instance.UpdateObstacles(Vector3.back * move);
     }
+
+    public float GetXOffSetPlayerPosition()
+        {
+            return Mathf.Round(GameManager.Instance.SpaceShipPoint.position.x / cubeSpacing) * cubeSpacing;
+        }
 
     private void SpawnInitialLines()
     {
