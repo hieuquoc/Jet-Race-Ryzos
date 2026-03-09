@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6563031061017824882
 RectTransform:
   m_ObjectHideFlags: 0
@@ -186,7 +186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1454166786149589244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -385,6 +385,7 @@ MonoBehaviour:
   showDuration: 0.2
   hideDuration: 0.15
   bounceScale: 1.15
+  timeLife: 1.5
 --- !u!1 &6040391562515375077
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +421,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 21.529694}
-  m_SizeDelta: {x: 751.838, y: 94.4571}
+  m_SizeDelta: {x: 1649.0802, y: 94.4571}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6274534907172424052
 CanvasRenderer:

@@ -69,10 +69,11 @@ namespace ZyroX
 
         IEnumerator StartGameCoroutine()
         {
+            UIManager.Instance.FlashAndLoad();
             yield return new WaitForSeconds(0.1f);
             Debug.Log("Map controller move" + MapController.IsMoving);
             ObstacleController.Instance.Reset();
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
             SpaceShipPoint.gameObject.SetActive(true);
             MapController.Instance.StartGame();
             InputController.Instance.SetInputEnabled(true);
