@@ -162,8 +162,8 @@ namespace ZyroX
             EffectLineIndexs.Clear();
             if (ObstacleLineIndexs.Count == 0) return;
 
-            int min = 2;
-            int max = MapController.CubeMapWidth - 2; // exclusive upper
+            int min = 5;
+            int max = MapController.CubeMapWidth - 5; // exclusive upper
             var rnd = new System.Random();
 
             for (int i = 0; i < ObstacleLineIndexs.Count; i++)
@@ -313,8 +313,8 @@ namespace ZyroX
                 return true;
             }
 
-            int min = 2;
-            int max = mapWidth - 2; // inclusive
+            int min = 5;
+            int max = mapWidth - 5; // inclusive
             int length = mapHeight;
 
             var result = new List<int>(length);
