@@ -16,6 +16,7 @@ namespace ZyroX
         public Shop ShopUI;
         public GameOverUI GameOverUI;
         public GameObject FlashEffect;
+        public CanvasGroup SplashImage;
 
         [SerializeField] private float flashFadeInDuration = 0.3f;
         [SerializeField] private float flashHoldDuration = 0.1f;
@@ -49,6 +50,12 @@ namespace ZyroX
                     flashImage = FlashEffect.AddComponent<Image>();
                 SetFlashAlpha(0f);
                 FlashEffect.SetActive(false);
+            }
+
+            if(SplashImage != null)
+            {
+                SplashImage.gameObject.SetActive(true);
+                StartCoroutine(SplashRoutine());
             }
         }
 
@@ -126,6 +133,20 @@ namespace ZyroX
             Color c = flashImage.color;
             c.a = alpha;
             flashImage.color = c;
+        }
+
+        IEnumerator SplashRoutine()
+        {
+            yield return new WaitForSeconds(1f);
+            float elapsed = 0f;
+            while (elapsed < 1f)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = Mathf.Clamp01(elapsed / 1f);
+                SplashImage.alpha = 1f - t;
+                yield return null;
+            }
+            SplashImage.gameObject.SetActive(false);
         }
     }
 }
