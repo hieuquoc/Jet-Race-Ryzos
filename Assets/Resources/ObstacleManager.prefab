@@ -48,6 +48,7 @@ MonoBehaviour:
   _checkPoints:
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 74897e44ccb74fa478b29417cd5f0fe5, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 1700
     Name: blocks
     SingleObstacle: 0
@@ -57,6 +58,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 6e5d21ffb27e98245b527cc1a4af6384, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 900
     Name: mix blocks
     SingleObstacle: 0
@@ -66,6 +68,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: e635bc79e66e54c4b8344b24dca49a73, type: 2}
+    EffectSet: {fileID: 0}
     Length: 1400
     Name: updown block
     SingleObstacle: 0
@@ -75,6 +78,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 100
     Name: blank
     SingleObstacle: 0
@@ -84,6 +88,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: c521326a354a49f4eaa6681819929788, type: 2}
+    EffectSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
     Length: 600
     Name: transition tunnel
     SingleObstacle: 1
@@ -93,6 +98,7 @@ MonoBehaviour:
     HideLine: 1
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: ba1b46ffd781fb64595c76f387e9ea02, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 1600
     Name: triangle
     SingleObstacle: 0
@@ -102,6 +108,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 21e8672ceaf0faf468ed47fa90b1073c, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 1100
     Name: updown mix block
     SingleObstacle: 0
@@ -111,6 +118,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 200
     Name: blank
     SingleObstacle: 0
@@ -120,6 +128,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: cc634450d6acf124d8f430775170db35, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 300
     Name: swipe block
     SingleObstacle: 0
@@ -129,6 +138,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 74897e44ccb74fa478b29417cd5f0fe5, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 200
     Name: blocks
     SingleObstacle: 0
@@ -138,6 +148,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: cc634450d6acf124d8f430775170db35, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 300
     Name: swipe block
     SingleObstacle: 0
@@ -147,6 +158,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 74897e44ccb74fa478b29417cd5f0fe5, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 300
     Name: blocks
     SingleObstacle: 0
@@ -156,6 +168,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: cc634450d6acf124d8f430775170db35, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 300
     Name: swipe block
     SingleObstacle: 0
@@ -165,6 +178,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 74897e44ccb74fa478b29417cd5f0fe5, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 300
     Name: block
     SingleObstacle: 0
@@ -174,6 +188,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: cc634450d6acf124d8f430775170db35, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 1000
     Name: swipe
     SingleObstacle: 0
@@ -183,6 +198,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
+    EffectSet: {fileID: 11400000, guid: e42470a8ce777be4cb1a3f29acd68e03, type: 2}
     Length: 100
     Name: blank
     SingleObstacle: 0
@@ -192,6 +208,7 @@ MonoBehaviour:
     HideLine: 0
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 83d3a3f792fba1b47b6d60476c67e805, type: 2}
+    EffectSet: {fileID: 11400000, guid: b2188b1f18921ac45b9fbc623e688db5, type: 2}
     Length: 280
     Name: gate
     SingleObstacle: 1
@@ -200,3 +217,4 @@ MonoBehaviour:
     FixedMidpoint: 1
     HideLine: 0
   spawnDistance: 0
+  SkipEffectLine: 10

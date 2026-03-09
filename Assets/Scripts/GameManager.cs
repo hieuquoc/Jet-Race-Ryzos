@@ -85,6 +85,7 @@ namespace ZyroX
                 ExplosionVfx.SetActive(true);
             }
             InputController.Instance.SetInputEnabled(false);
+            UIManager.Instance.ShowPopUp(UIManager.Instance.GameOverUI);
         }
 
         public void AddCoin(int coin)

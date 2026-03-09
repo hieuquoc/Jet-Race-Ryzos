@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace ZyroX
 {
@@ -18,8 +19,10 @@ namespace ZyroX
         private GameObject curBigObstacle;
         [SerializeField] private float spawnDistance = 0f;
         private List<GameObject> activeObstacles = new List<GameObject>();
+        private List<GameObject> activeEffects = new List<GameObject>();
         public CheckPoint CurrentCheckPoint => CheckPoints[_currentCheckPoint];
-        private int lastCheckpointIndex = 0;
+        private int currentSkipEffectLine = 0;
+        public int SkipEffectLine = 10;
 
         void Awake()
         {
@@ -106,14 +109,59 @@ namespace ZyroX
             return obj;
         }
 
+        public GameObject SpawnEffectFromSet(int checkPoint, Vector3 position, Quaternion rotation)
+        {
+
+            var set = _checkPoints[checkPoint].EffectSet;
+            if (set == null || set.Obstacles == null || set.Obstacles.Length == 0)
+            {
+                Debug.LogWarning("Effect set is empty");
+                return null;
+            }
+
+            var prefab = set.Obstacles[UnityEngine.Random.Range(0, set.Obstacles.Length)];
+            if (prefab == null) return null;
+
+            var obj = GetFromPool(prefab);
+            if (obj == null) return null;
+            obj.transform.SetParent(transform);
+            obj.transform.position = position;
+            obj.transform.rotation = rotation;
+            obj.SetActive(true);
+
+            activeEffects.Add(obj);
+            return obj;
+        }
+
         public GameObject SpawnRandom(BlockLine line)
         {
             if (IsSkippingObstacle())
             {
                 return null;
             }
-            Vector3 position = line.GetLinePoint(GetNextObstacleLineIndex());
+            int lineIndex = GetNextObstacleLineIndex();
+            Vector3 position = line.GetLinePoint(lineIndex);
+
+            if(IsSkippingEffect())
+            {
+                return null;
+            }
+
+            int effectLineIndex = RandomEffectLineIndex(lineIndex);
+            Vector3 effectPosition = line.GetLinePoint(effectLineIndex);
+            SpawnEffectFromSet(_currentCheckPoint, effectPosition, Quaternion.identity);
             return SpawnRandomFromSet(_currentCheckPoint, position, Quaternion.identity);
+        }
+
+        public int RandomEffectLineIndex(int occupiedLineIndex)
+        {
+            int index = occupiedLineIndex;
+            while (index == occupiedLineIndex)
+            {
+                index = Random.Range(2, MapController.CubeMapWidth - 2);
+            }
+
+            return index;
         }
 
         GameObject GetFromPool(GameObject prefab)
@@ -152,7 +200,15 @@ namespace ZyroX
 
         private void ReturnToPool(GameObject obj)
         {
-            activeObstacles.Remove(obj);
+            if(activeObstacles.Contains(obj))
+                activeObstacles.Remove(obj);
+            else if(activeEffects.Contains(obj)){
+                activeEffects.Remove(obj);
+            }
+             else
+            {
+                Debug.LogWarning("Returned object is not in active lists: " + obj.name);
+            }
             var tag = obj.GetComponent<ObstacleInstance>();
             if (tag == null || tag.Prefab == null)
             {
@@ -183,6 +239,17 @@ namespace ZyroX
                 skipping = false;
             }
             return skipping;
+        }
+
+        public bool IsSkippingEffect()
+        {
+            if (currentSkipEffectLine <= 0)
+            {
+                currentSkipEffectLine = SkipEffectLine;
+                return false;
+            }
+            currentSkipEffectLine--;
+            return true;
         }
 
         // Generate ObstacleLineIndexs for each map row (height).
@@ -326,7 +393,6 @@ namespace ZyroX
         {
             int checkPointIndex = GetCheckPointIndexByDistance();
             if (checkPointIndex == _currentCheckPoint) return;
-            lastCheckpointIndex = _currentCheckPoint;
             _currentCheckPoint = checkPointIndex;
             if (_currentCheckPoint >= CheckPoints.Length)
             {
@@ -362,6 +428,7 @@ namespace ZyroX
                 curBigObstacle = null;
             }
         }
+        
 
 
     }
@@ -378,6 +445,7 @@ namespace ZyroX
     {
         public float CheckPointDistance;
         public ObstacleSet ObstacleSet;
+        public ObstacleSet EffectSet;
         public float Length;
         public string Name;
         public bool SingleObstacle;

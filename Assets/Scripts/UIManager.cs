@@ -12,8 +12,10 @@ namespace ZyroX
         public HomeUI HomeUI;
         public InGameUI InGameUI;
         public Shop ShopUI;
+        public GameOverUI GameOverUI;
 
         public UIPopUpBase CurrentPopUp { get; private set; }
+        public UIPopUpBase PreviousPopUp { get; private set; }
 
 
         void Awake()
@@ -28,6 +30,7 @@ namespace ZyroX
             }
             InGameUI.gameObject.SetActive(false);
             ShopUI.gameObject.SetActive(false);
+            GameOverUI.gameObject.SetActive(false);
         }
 
         // Start is called before the first frame update
@@ -52,6 +55,7 @@ namespace ZyroX
             if (CurrentPopUp != null)
             {
                 CurrentPopUp.Hide();
+                PreviousPopUp = CurrentPopUp;
             }
             CurrentPopUp = popUp;
             CurrentPopUp.Show();
