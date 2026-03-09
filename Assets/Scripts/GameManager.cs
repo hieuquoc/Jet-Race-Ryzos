@@ -76,6 +76,7 @@ namespace ZyroX
             SpaceShipPoint.gameObject.SetActive(true);
             MapController.Instance.StartGame();
             InputController.Instance.SetInputEnabled(true);
+            EffectController.Instance.Reset();
             Debug.Log("Map controller move" + MapController.IsMoving);
         }
 
@@ -84,7 +85,7 @@ namespace ZyroX
             MapController.Instance.GameOver();
             ship[CurrentShipId].SetActive(false);
             SpaceShipPoint.gameObject.SetActive(false);
-            EffectController.Instance.Reset();
+            EffectController.Instance.ClearEffects();
             if (ExplosionVfx != null)
             {
                 ExplosionVfx.SetActive(true);

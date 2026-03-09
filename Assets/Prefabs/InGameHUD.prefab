@@ -1061,25 +1061,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8319158363709332633}
     m_Modifications:
-    - target: {fileID: 3486566864863362981, guid: fb9097995ecddd1419668c9be0e7eee0, type: 3}
-      propertyPath: m_Color.b
-      value: 0.07075471
-      objectReference: {fileID: 0}
-    - target: {fileID: 3486566864863362981, guid: fb9097995ecddd1419668c9be0e7eee0, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3486566864863362981, guid: fb9097995ecddd1419668c9be0e7eee0, type: 3}
-      propertyPath: m_Color.r
-      value: 0.73410857
+    - target: {fileID: 2339642348054837578, guid: fb9097995ecddd1419668c9be0e7eee0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5449484251188327792, guid: fb9097995ecddd1419668c9be0e7eee0, type: 3}
       propertyPath: m_Name
       value: PopUpMessage
-      objectReference: {fileID: 0}
-    - target: {fileID: 5449484251188327792, guid: fb9097995ecddd1419668c9be0e7eee0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5824000703067407093, guid: fb9097995ecddd1419668c9be0e7eee0, type: 3}
       propertyPath: m_Pivot.x

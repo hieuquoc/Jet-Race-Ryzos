@@ -220,3 +220,4 @@ MonoBehaviour:
   spawnDistance: 0
   SkipEffectLine: 15
   EffectAvoidPreviousLines: 3
+  isDebug: 1

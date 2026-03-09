@@ -6,7 +6,7 @@ namespace ZyroX
 {
     public class EffectController : MonoBehaviour
     {
-        public bool IsActive;
+        public bool IsActive = true;
         public static EffectController Instance;
         public Collider ShipCollider;
         public GameObject ShieldEffect;
@@ -59,10 +59,6 @@ namespace ZyroX
                         }
                     }
                 }
-            }
-            else
-            {
-                IsActive = false;
             }
         }
 
@@ -128,13 +124,21 @@ namespace ZyroX
             ActiveEffects.Clear();
             MapController.Instance.SetSpeedMultiplier(1f);
             ActiveShield(false);
-            IsActive = false;
+            IsActive = true;
         }
 
         public float GetCurrentEffectTimer()
         {
             float elapsed = Time.time - currentEffect.StartTime;
-            return Mathf.Clamp01(elapsed / currentEffect.Duration);
+            return 1- Mathf.Clamp01(elapsed / currentEffect.Duration);
+        }
+
+        public void ClearEffects()
+        {
+            ActiveEffects.Clear();
+            MapController.Instance.SetSpeedMultiplier(1f);
+            ActiveShield(false);
+            IsActive = false;
         }
     }
 

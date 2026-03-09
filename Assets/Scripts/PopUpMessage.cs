@@ -18,6 +18,7 @@ namespace ZyroX
         [SerializeField] private float bounceScale = 1.15f;
 
         private Coroutine[] animCoroutines;
+        private int previousIndex = 0;
 
         void Awake()
         {
@@ -40,6 +41,12 @@ namespace ZyroX
         public void ShowMessage(MessageType type)
         {
             gameObject.SetActive(true);
+            if(previousIndex != (int)type)
+            {
+                Messages[previousIndex].SetActive(false);
+                return;
+            }
+            Debug.Log("ShowMessage: " + type + "/" + ((int)type));
             int index = (int)type;
             if (index < 0 || index >= Messages.Length)
             {
@@ -63,8 +70,10 @@ namespace ZyroX
                 }
             }
 
+            if (animCoroutines[previousIndex] != null) StopCoroutine(animCoroutines[previousIndex]);
             if (animCoroutines[index] != null) StopCoroutine(animCoroutines[index]);
             animCoroutines[index] = StartCoroutine(AnimShow(Messages[index]));
+            previousIndex = index;
         }
 
         public void HideMessage(MessageType type)
@@ -129,9 +138,9 @@ namespace ZyroX
 
     public enum MessageType
     {
-        LookOut,
-        Bonus,
-        Effects
+        LookOut = 0,
+        Bonus = 1,
+        Effects = 2
     }
 
 }

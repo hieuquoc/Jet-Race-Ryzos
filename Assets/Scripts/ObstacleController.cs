@@ -26,6 +26,7 @@ namespace ZyroX
         private int currentSkipEffectLine = 0;
         public int SkipEffectLine = 10;
         public int EffectAvoidPreviousLines = 3;
+        [SerializeField] private bool isDebug = false;
 
         void Awake()
         {
@@ -139,19 +140,18 @@ namespace ZyroX
 
         public GameObject SpawnRandom(BlockLine line)
         {
-            if (IsSkippingObstacle())
-            {
-                return null;
-            }
-            int lineIndex = GetNextObstacleLineIndex();
-            Vector3 position = line.GetLinePoint(lineIndex);
-
             if(!IsSkippingEffect())
             {
                 int effectLineIndex = GetNextEffectLineIndex();
                 Vector3 effectPosition = line.GetLinePoint(effectLineIndex);
                 line.Effect = SpawnEffectFromSet(_currentCheckPoint, effectPosition, Quaternion.identity);
             }
+            if (IsSkippingObstacle() || isDebug)
+            {
+                return null;
+            }
+            int lineIndex = GetNextObstacleLineIndex();
+            Vector3 position = line.GetLinePoint(lineIndex);          
 
             return SpawnRandomFromSet(_currentCheckPoint, position, Quaternion.identity);
         }
