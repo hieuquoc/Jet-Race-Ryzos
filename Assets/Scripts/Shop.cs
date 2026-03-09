@@ -4,56 +4,63 @@ using UnityEngine;
 
 namespace ZyroX
 {
-    public class Shop : MonoBehaviour
-{
-    public ShipList shipList;
-    public Transform ShipView;
-
-    public Dictionary<string, ShopItem> shipPreviews = new Dictionary<string, ShopItem>();
-
-    void Start()
+    public class Shop : UIPopUpBase
     {
-        ShowShop();
-    }
+        public ShipList shipList;
+        public Transform ShipView;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        public Dictionary<string, ShopItem> shipPreviews = new Dictionary<string, ShopItem>();
 
-    public void ShowShop()
-    {
-        foreach (var ship in shipList.Ships)
+        void Start()
         {
-            if (!shipPreviews.ContainsKey(ship.Id))
+
+        }
+
+        public override void Show()
+        {
+            base.Show();
+            ShowShop();
+        }
+
+
+        public void ShowShop()
+        {
+            foreach (var ship in shipList.Ships)
             {
-                var newPreview = Instantiate(Resources.Load<GameObject>("UIs/ShopItem"), ShipView);
-                var shopItem = newPreview.GetComponent<ShopItem>();
-                shopItem.Setup(ship);
-                shipPreviews.Add(ship.Id, shopItem);
+                if (!shipPreviews.ContainsKey(ship.Id))
+                {
+                    var newPreview = Instantiate(Resources.Load<GameObject>("UIs/ShopItem"), ShipView);
+                    var shopItem = newPreview.GetComponent<ShopItem>();
+                    shopItem.Setup(ship);
+                    shipPreviews.Add(ship.Id, shopItem);
+                    shopItem.BuyButton.onClick.AddListener(() => BuyShip(ship.Id));
+                }
+                else
+                {
+                    shipPreviews[ship.Id].Setup(ship);
+                }
+            }
+        }
+
+        public void BuyShip(string shipId)
+        {
+            var ship = shipList.Ships.Find(s => s.Id == shipId);
+            if (ship.Cost <= PlayerData.Coins)
+            {
+                PlayerData.Coins -= ship.Cost;
+                PlayerData.AddShip(shipId);
+                Debug.Log("Bought " + ship.Name);
             }
             else
             {
-                shipPreviews[ship.Id].Setup(ship);
+                Debug.Log("Not enough coins to buy " + ship.Name);
             }
         }
-    }
 
-    public void BuyShip(string shipId)
-    {
-        var ship = shipList.Ships.Find(s => s.Id == shipId);
-        if (ship.Cost <= PlayerData.Coins)
+        public void BackToHome()
         {
-            PlayerData.Coins -= ship.Cost;
-            PlayerData.AddShip(shipId);
-            Debug.Log("Bought " + ship.Name);
-        }
-        else
-        {
-            Debug.Log("Not enough coins to buy " + ship.Name);
+            UIManager.Instance.ShowPopUp(UIManager.Instance.HomeUI);
         }
     }
-}
 
 }

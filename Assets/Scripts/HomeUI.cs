@@ -23,7 +23,7 @@ namespace ZyroX
 
         public void OnShopButtonClicked()
         {
-
+            UIManager.Instance.ShowPopUp(UIManager.Instance.ShopUI);
         }
 
         public void ShowHighScore(float distance = 0)

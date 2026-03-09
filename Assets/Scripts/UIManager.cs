@@ -11,6 +11,7 @@ namespace ZyroX
         public TextMeshProUGUI DistanceText;
         public HomeUI HomeUI;
         public InGameUI InGameUI;
+        public Shop ShopUI;
 
         public UIPopUpBase CurrentPopUp { get; private set; }
 
@@ -26,6 +27,7 @@ namespace ZyroX
                 Destroy(gameObject);
             }
             InGameUI.gameObject.SetActive(false);
+            ShopUI.gameObject.SetActive(false);
         }
 
         // Start is called before the first frame update

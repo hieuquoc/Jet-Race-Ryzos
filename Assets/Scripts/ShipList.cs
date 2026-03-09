@@ -15,6 +15,7 @@ namespace ZyroX
     public struct ShipData
     {
         public string Id;
+        public string PrefabName;
         public string Name;
         public int Cost;
     }

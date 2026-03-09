@@ -13,21 +13,25 @@ namespace ZyroX
         public TextMeshProUGUI CostText;
         public TextMeshProUGUI StatusText;
         public GameObject NotEnoughOverlay;
+        public Button BuyButton;
 
         public void Setup(ShipData shipData)
         {
-            Icon.sprite = Resources.Load<Sprite>("Icons/" + shipData.Id);
+            Icon.sprite = Resources.Load<Sprite>("Icons/" + shipData.PrefabName);
             NameText.text = shipData.Name;
-            CostText.text = shipData.Cost.ToString() + " Coins";
+            CostText.text = "Cost: " + shipData.Cost.ToString();
             if (PlayerData.OwnsShip(shipData.Id))
             {
                 StatusText.text = "Owned";
+                NotEnoughOverlay.SetActive(false);
+                BuyButton.interactable = false;
             }
             else
             {
                 StatusText.text = "Purchase";
                 StatusText.gameObject.SetActive(shipData.Cost <= PlayerData.Coins);
                 NotEnoughOverlay.SetActive(shipData.Cost > PlayerData.Coins);
+                BuyButton.interactable = shipData.Cost <= PlayerData.Coins;
             }
         }
     }
