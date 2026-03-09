@@ -9,12 +9,14 @@ namespace ZyroX
     {
         public Dictionary<GameObject, Queue<GameObject>> obstaclePools = new Dictionary<GameObject, Queue<GameObject>>();
         public List<int> ObstacleLineIndexs = new List<int>();
+        public List<int> EffectLineIndexs = new List<int>();
         [SerializeField] private CheckPoint[] _checkPoints;
         public CheckPoint[] CheckPoints => _checkPoints;
         public static ObstacleController Instance;
         private float loopLength = 0;
         public static float LoopLength => Instance.loopLength;
         private int currentLineIndex = -1;
+        private int currentEffectLineIndex = -1;
         private int _currentCheckPoint;
         private GameObject curBigObstacle;
         [SerializeField] private float spawnDistance = 0f;
@@ -23,6 +25,7 @@ namespace ZyroX
         public CheckPoint CurrentCheckPoint => CheckPoints[_currentCheckPoint];
         private int currentSkipEffectLine = 0;
         public int SkipEffectLine = 10;
+        public int EffectAvoidPreviousLines = 3;
 
         void Awake()
         {
@@ -38,6 +41,7 @@ namespace ZyroX
         {
             InitializePools();
             GenerateObstacleLineIndexs(MapController.CubeMapWidth, 100);
+            GenerateEffectLineIndexs();
             ConvertCheckPointLengthToDistance();
             spawnDistance = MapController.CubeSpacing * MapController.CubeMapHeight;
         }
@@ -144,24 +148,57 @@ namespace ZyroX
 
             if(!IsSkippingEffect())
             {
-                int effectLineIndex = RandomEffectLineIndex(lineIndex);
+                int effectLineIndex = GetNextEffectLineIndex();
                 Vector3 effectPosition = line.GetLinePoint(effectLineIndex);
                 line.Effect = SpawnEffectFromSet(_currentCheckPoint, effectPosition, Quaternion.identity);
             }
 
-            
             return SpawnRandomFromSet(_currentCheckPoint, position, Quaternion.identity);
         }
 
-        public int RandomEffectLineIndex(int occupiedLineIndex)
+        // Pre-generate effect indexes tránh N obstacle index liền trước (kể cả cùng line)
+        public void GenerateEffectLineIndexs()
         {
-            int index = occupiedLineIndex;
-            while (index == occupiedLineIndex)
-            {
-                index = Random.Range(2, MapController.CubeMapWidth - 2);
-            }
+            EffectLineIndexs.Clear();
+            if (ObstacleLineIndexs.Count == 0) return;
 
-            return index;
+            int min = 2;
+            int max = MapController.CubeMapWidth - 2; // exclusive upper
+            var rnd = new System.Random();
+
+            for (int i = 0; i < ObstacleLineIndexs.Count; i++)
+            {
+                // forbidden: N line trước, cùng line, và N line sau
+                var forbidden = new HashSet<int>();
+                int from = Mathf.Max(0, i - EffectAvoidPreviousLines);
+                int to = Mathf.Min(ObstacleLineIndexs.Count - 1, i + EffectAvoidPreviousLines);
+                for (int k = from; k <= to; k++)
+                    forbidden.Add(ObstacleLineIndexs[k]);
+
+                // candidates: tất cả slot không bị cấm
+                var candidates = new List<int>();
+                for (int v = min; v < max; v++)
+                    if (!forbidden.Contains(v)) candidates.Add(v);
+
+                // fallback nếu không còn slot
+                if (candidates.Count == 0)
+                {
+                    EffectLineIndexs.Add(Random.Range(min, max));
+                    continue;
+                }
+
+                int pick = candidates[rnd.Next(candidates.Count)];
+                EffectLineIndexs.Add(pick);
+            }
+        }
+
+        public int GetNextEffectLineIndex()
+        {
+            if (EffectLineIndexs.Count == 0) return 2;
+            currentEffectLineIndex++;
+            if (currentEffectLineIndex >= EffectLineIndexs.Count)
+                currentEffectLineIndex = 0;
+            return EffectLineIndexs[currentEffectLineIndex];
         }
 
         GameObject GetFromPool(GameObject prefab)

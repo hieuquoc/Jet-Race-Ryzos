@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObstacleLineIndexs: 
+  EffectLineIndexs: 
   _checkPoints:
   - CheckPointDistance: 0
     ObstacleSet: {fileID: 11400000, guid: 74897e44ccb74fa478b29417cd5f0fe5, type: 2}
@@ -217,4 +218,5 @@ MonoBehaviour:
     FixedMidpoint: 1
     HideLine: 0
   spawnDistance: 0
-  SkipEffectLine: 10
+  SkipEffectLine: 15
+  EffectAvoidPreviousLines: 3
