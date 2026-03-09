@@ -84,7 +84,9 @@ namespace ZyroX
 
         public void SetInputEnabled(bool enabled)
         {
+            holdDirection = 0;
             isInputEnabled = enabled;
+            spaceShip.Direction = Vector3.zero;
         }
     }
 }
