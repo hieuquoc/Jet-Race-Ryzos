@@ -70,6 +70,7 @@ namespace ZyroX
         IEnumerator StartGameCoroutine()
         {
             UIManager.Instance.FlashAndLoad();
+            AudioManager.Instance.PlayGameMusic();
             yield return new WaitForSeconds(0.1f);
             Debug.Log("Map controller move" + MapController.IsMoving);
             ObstacleController.Instance.Reset();
@@ -100,6 +101,7 @@ namespace ZyroX
         {
             PlayerData.AddCoins(coin);
             RunCoin += coin;
+            AudioManager.Instance.PlayCoin();
         }
     }
 

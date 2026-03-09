@@ -55,11 +55,13 @@ namespace ZyroX
         {
             Debug.Log("Not enough coins to buy " + ship.Name);
         }
+        AudioManager.Instance.PlayButtonClick();
     }
 
     public void BackToHome()
     {
         UIManager.Instance.ShowPopUp(UIManager.Instance.PreviousPopUp);
+        AudioManager.Instance.PlayButtonClick();
     }
 }
 

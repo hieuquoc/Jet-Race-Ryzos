@@ -76,16 +76,19 @@ public class GameOverUI : UIPopUpBase
     {
         Hide();
         GameManager.Instance.StartGame();
+        AudioManager.Instance.PlayButtonClick();
     }
 
     public void OnStoreButtonClicked()
     {
         UIManager.Instance.ShowPopUp(UIManager.Instance.ShopUI);
+        AudioManager.Instance.PlayButtonClick();
     }
 
     public void OnHomeButtonClicked()
     {
         UIManager.Instance.ShowPopUp(UIManager.Instance.HomeUI);
+        AudioManager.Instance.PlayButtonClick();
     }
 }
 

@@ -41,6 +41,7 @@ namespace ZyroX
                     InGameUI.Instance.ShowMessage(MessageType.Bonus);
                     return;                
             }
+            AudioManager.Instance.PlayExplosion();
             GameManager.Instance.GameOver();
         }
     }

@@ -11,6 +11,7 @@ namespace ZyroX
         {
             base.Show();
             ShowHighScore();
+            AudioManager.Instance.PlayMenuMusic();
         }
 
         public TextMeshProUGUI HighScoreText;
@@ -19,11 +20,13 @@ namespace ZyroX
         {
             Hide();
             GameManager.Instance.StartGame();
+            AudioManager.Instance.PlayButtonClick();
         }
 
         public void OnShopButtonClicked()
         {
             UIManager.Instance.ShowPopUp(UIManager.Instance.ShopUI);
+            AudioManager.Instance.PlayButtonClick();
         }
 
         public void ShowHighScore(float distance = 0)

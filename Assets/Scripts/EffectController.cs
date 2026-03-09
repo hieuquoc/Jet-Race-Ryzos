@@ -64,6 +64,7 @@ namespace ZyroX
 
         public void AddEffect(EffectType type)
         {
+            AudioManager.Instance.PlayEffectPickup();
             EffectData existingEffect = ActiveEffects.Find(e => e.Type == type);
             float duration = type switch
             {
