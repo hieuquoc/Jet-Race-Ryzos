@@ -21,6 +21,7 @@ namespace ZyroX
 
         void OnTriggerEnter(Collider other)
         {
+            Debug.Log("SpaceShip collided with " + other.gameObject.name);
             switch (other.gameObject.tag)
             {
                 case "Speed":
@@ -34,8 +35,7 @@ namespace ZyroX
                     return;
                 case "Bonus":
                     GameManager.Instance.AddCoin(500);
-                    return;
-                Debug.Log("SpaceShip collided with " + other.gameObject.name);
+                    return;                
             }
             GameManager.Instance.GameOver();
         }

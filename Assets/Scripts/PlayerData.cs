@@ -60,9 +60,9 @@ namespace ZyroX
         get {
             if(!PlayerPrefs.HasKey(SelectedShipKey))
             {
-                PlayerPrefs.SetString(SelectedShipKey, "spaceship_1");
+                PlayerPrefs.SetString(SelectedShipKey, "1");
             }
-            return PlayerPrefs.GetString(SelectedShipKey, "spaceship_1");
+            return PlayerPrefs.GetString(SelectedShipKey, "1");
         }
         set => PlayerPrefs.SetString(SelectedShipKey, value);
     }

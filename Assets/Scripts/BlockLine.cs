@@ -8,6 +8,7 @@ namespace ZyroX
     public class BlockLine : MonoBehaviour
 {
     public GameObject Obstacle;
+    public GameObject Effect;
     public List<Transform> Cubes = new List<Transform>();
 
 
@@ -30,6 +31,11 @@ namespace ZyroX
         {
             ObstacleController.Instance.ReturnObstacle(Obstacle.gameObject);
             Obstacle = null;
+        }
+        if (Effect != null)
+        {
+            ObstacleController.Instance.ReturnEffect(Effect.gameObject);
+            Effect = null;
         }
     }
 

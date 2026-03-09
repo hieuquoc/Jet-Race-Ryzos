@@ -9,6 +9,12 @@ namespace ZyroX
     {
         public List<ShipData> Ships;
         public string CurrentShipId;
+
+        
+        public ShipData GetShipData(string id)
+        {
+            return Ships.Find(s => s.Id == id);
+        }
     }
 
     [Serializable]

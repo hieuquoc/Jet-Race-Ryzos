@@ -12,6 +12,7 @@ namespace ZyroX
         public GameObject ExplosionVfx;
         public static int LastRandomLineIndex = 0;
         public static int RunCoin = 0;
+        public ShipList ShipList;
 
         private Dictionary<string, GameObject> ship = new Dictionary<string, GameObject>();
 
@@ -25,6 +26,7 @@ namespace ZyroX
         void Start()
         {
             CurrentShipId = PlayerData.SelectedShip;
+            SpaceShipPoint.gameObject.SetActive(false);
         }
 
         // Update is called once per frame
@@ -39,10 +41,13 @@ namespace ZyroX
             {
                 SpaceShip.gameObject.SetActive(false);
             }
+            Debug.Log("Loading ship: " + shipId);
             if (!ship.ContainsKey(shipId))
             {
-                var newShip = Instantiate(Resources.Load<GameObject>("Ships/" + shipId));
+                var shipData = ShipList.GetShipData(shipId);
+                var newShip = Instantiate(Resources.Load<GameObject>("Ships/" + shipData.PrefabName));
                 ship.Add(shipId, newShip);
+                Debug.Log("Loaded ship: " + shipData.Name);
             }
             SpaceShip = ship[shipId].transform;
             SpaceShip.gameObject.SetActive(true);

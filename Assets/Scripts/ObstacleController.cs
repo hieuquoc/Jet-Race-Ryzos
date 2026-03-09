@@ -142,14 +142,14 @@ namespace ZyroX
             int lineIndex = GetNextObstacleLineIndex();
             Vector3 position = line.GetLinePoint(lineIndex);
 
-            if(IsSkippingEffect())
+            if(!IsSkippingEffect())
             {
-                return null;
+                int effectLineIndex = RandomEffectLineIndex(lineIndex);
+                Vector3 effectPosition = line.GetLinePoint(effectLineIndex);
+                line.Effect = SpawnEffectFromSet(_currentCheckPoint, effectPosition, Quaternion.identity);
             }
 
-            int effectLineIndex = RandomEffectLineIndex(lineIndex);
-            Vector3 effectPosition = line.GetLinePoint(effectLineIndex);
-            SpawnEffectFromSet(_currentCheckPoint, effectPosition, Quaternion.identity);
+            
             return SpawnRandomFromSet(_currentCheckPoint, position, Quaternion.identity);
         }
 
@@ -195,6 +195,12 @@ namespace ZyroX
                 ReturnToPool(curBigObstacle);
                 curBigObstacle = null;
             }
+            ReturnToPool(obj);
+        }
+
+        public void ReturnEffect(GameObject obj)
+        {
+            if (obj == null) return;
             ReturnToPool(obj);
         }
 
@@ -374,6 +380,10 @@ namespace ZyroX
             {
                 obj.transform.position += move;
             }
+            foreach (var obj in activeEffects)
+            {
+                obj.transform.position += move;
+            }
             UpdateCheckPoint();
         }
 
@@ -427,6 +437,12 @@ namespace ZyroX
                 ReturnToPool(curBigObstacle);
                 curBigObstacle = null;
             }
+
+            for (int i = activeEffects.Count - 1; i >= 0; i--)
+            {
+                if (activeEffects[i] != null) ReturnToPool(activeEffects[i]);
+            }
+            activeEffects.Clear();
         }
         
 
