@@ -84,10 +84,10 @@ namespace ZyroX
                 switch (EffectController.Instance.CurrentEffect.Type)
                 {
                     case EffectType.SpeedBoost:
-                        EffectText.text = "SPEED BOOST! +500";
+                        EffectText.text = "SPEED BOOST! +500G";
                         break;
                     case EffectType.Shield:
-                        EffectText.text = "GOT SHIELD! +500";
+                        EffectText.text = "GOT SHIELD! +500G";
                         break;
                     case EffectType.Slow:
                         EffectText.text = "IT'S SLOW TIME! +500";

@@ -35,6 +35,7 @@ namespace ZyroX
     {
         var currentCoins = Coins + amount;
         Coins = currentCoins;
+        UIManager.Instance.InGameUI.CoinText.text = $"{Coins}";
     }
 
     public static List<string> OwnedShips

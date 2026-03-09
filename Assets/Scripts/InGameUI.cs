@@ -8,6 +8,7 @@ namespace ZyroX
     public class InGameUI : UIPopUpBase
     {
         public TextMeshProUGUI TargetDistanceText;
+        public TextMeshProUGUI CoinText;
         public PopUpMessage PopUpMessage;
         public static InGameUI Instance { get; private set; }
 
@@ -25,6 +26,7 @@ namespace ZyroX
         {
             base.Show();
             TargetDistanceText.text = $"{PlayerData.RecordDistance:F1}m";
+            CoinText.text = $"{PlayerData.Coins}";
             PopUpMessage.HideAll();
         }
 
