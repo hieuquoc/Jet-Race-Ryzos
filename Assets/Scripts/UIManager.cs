@@ -10,6 +10,9 @@ namespace ZyroX
         public static UIManager Instance;
         public TextMeshProUGUI DistanceText;
         public HomeUI HomeUI;
+        public InGameUI InGameUI;
+
+        public UIPopUpBase CurrentPopUp { get; private set; }
 
 
         void Awake()
@@ -22,18 +25,34 @@ namespace ZyroX
             {
                 Destroy(gameObject);
             }
+            InGameUI.gameObject.SetActive(false);
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            HomeUI.Show();
+            ShowPopUp(HomeUI);
         }
 
         // Update is called once per frame
         void Update()
         {
 
+        }
+
+        public void PlayGame()
+        {
+            ShowPopUp(InGameUI);
+        }
+
+        public void ShowPopUp(UIPopUpBase popUp)
+        {
+            if (CurrentPopUp != null)
+            {
+                CurrentPopUp.Hide();
+            }
+            CurrentPopUp = popUp;
+            CurrentPopUp.Show();
         }
     }
 

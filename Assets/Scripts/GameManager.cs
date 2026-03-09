@@ -58,7 +58,7 @@ namespace ZyroX
             EffectController.Instance.Reset();
             ExplosionVfx.SetActive(false);
             RunCoin = 0;            
-            
+            UIManager.Instance.PlayGame();
             StartCoroutine(StartGameCoroutine());
         }
 
@@ -84,6 +84,7 @@ namespace ZyroX
             {
                 ExplosionVfx.SetActive(true);
             }
+            InputController.Instance.SetInputEnabled(false);
         }
 
         public void AddCoin(int coin)
