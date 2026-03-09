@@ -18,6 +18,7 @@ namespace ZyroX
     [SerializeField] private bool isMoving = false;
     [SerializeField] float _loopStartDistance = 0f;
     [SerializeField] private float _runDistance = 0f;
+    private float tickTimer = 1f;
 
 
     private List<BlockLine> lines = new List<BlockLine>();
@@ -71,6 +72,15 @@ namespace ZyroX
     void Update()
     {
         if (!isMoving) return;
+        if(tickTimer > 0f)
+        {
+            tickTimer -= Time.deltaTime;
+        }
+        else
+        {
+            tickTimer = 1f;
+            PlayerData.UpdateRecordDistance(RunDistance);
+        }
         float move = moveSpeed * speedMultiplier * Time.deltaTime;
         RunDistance += move;
         LoopStartDistance += move;

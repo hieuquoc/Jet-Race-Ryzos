@@ -93,6 +93,7 @@ namespace ZyroX
             }
             InputController.Instance.SetInputEnabled(false);
             UIManager.Instance.ShowPopUp(UIManager.Instance.GameOverUI);
+            PlayerData.UpdateRecordDistance(MapController.RunDistance);
         }
 
         public void AddCoin(int coin)

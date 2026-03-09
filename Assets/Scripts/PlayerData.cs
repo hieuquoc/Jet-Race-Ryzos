@@ -88,6 +88,14 @@ namespace ZyroX
         }
         PlayerPrefs.SetString(OwnedShipsKey, ownedShips);
     }
+
+    public static void UpdateRecordDistance(float distance)
+    {
+        if (distance > RecordDistance)
+        {
+            RecordDistance = distance;
+        }
+    }
 }
 
 }

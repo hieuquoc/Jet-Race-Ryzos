@@ -15,7 +15,7 @@ public class GameOverUI : UIPopUpBase
     [SerializeField] private float bounceScale = 1.25f;
     [SerializeField] private float bounceDelay = 0.1f;
 
-    public new void Show()
+    public override void Show()
     {
         base.Show();
         TargetDistanceText.SetText($"{PlayerData.RecordDistance:F1}m");
