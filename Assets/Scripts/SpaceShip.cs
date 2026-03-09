@@ -26,15 +26,19 @@ namespace ZyroX
             {
                 case "Speed":
                     EffectController.Instance.AddEffect(EffectType.SpeedBoost);
+                    InGameUI.Instance.ShowMessage(MessageType.Effects);
                     return;
                 case "Shield":
                     EffectController.Instance.AddEffect(EffectType.Shield);
+                    InGameUI.Instance.ShowMessage(MessageType.Effects);
                     return;
                 case "Slow":
                     EffectController.Instance.AddEffect(EffectType.Slow);
+                    InGameUI.Instance.ShowMessage(MessageType.Effects);
                     return;
                 case "Bonus":
                     GameManager.Instance.AddCoin(500);
+                    InGameUI.Instance.ShowMessage(MessageType.Bonus);
                     return;                
             }
             GameManager.Instance.GameOver();

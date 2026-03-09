@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5493574885767184090}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6226453619410861269}
   - component: {fileID: 7918449956529536490}
   - component: {fileID: 1020686518230842047}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Shield
   m_TagString: Speed
   m_Icon: {fileID: 0}

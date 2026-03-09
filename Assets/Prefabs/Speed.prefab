@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2987822934174118720}
   - component: {fileID: 5813052222142294866}
   - component: {fileID: 7491661706629589420}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Speed
   m_TagString: Speed
   m_Icon: {fileID: 0}
@@ -4931,7 +4931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 794181467229514091}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

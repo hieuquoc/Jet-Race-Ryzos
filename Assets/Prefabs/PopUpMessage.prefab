@@ -381,7 +381,10 @@ MonoBehaviour:
   - {fileID: 1742673676953724348}
   BonusText: {fileID: 6004186952065968426}
   EffectText: {fileID: 3978058160757915721}
-  EffectTimerFill: {fileID: 0}
+  EffectTimerFill: {fileID: 3486566864863362981}
+  showDuration: 0.2
+  hideDuration: 0.15
+  bounceScale: 1.15
 --- !u!1 &6040391562515375077
 GameObject:
   m_ObjectHideFlags: 0

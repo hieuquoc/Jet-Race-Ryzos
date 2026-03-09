@@ -16,6 +16,8 @@ namespace ZyroX
         [SerializeField] private float SpeedBoostDuration = 5f;
         [SerializeField] private float ShieldDuration = 5f;
         [SerializeField] private float SlowDuration = 5f;
+        private EffectData currentEffect;
+        public EffectData CurrentEffect => currentEffect;
 
         void Awake()
         {
@@ -78,10 +80,13 @@ namespace ZyroX
             {
                 existingEffect.Duration = duration;
                 existingEffect.StartTime = Time.time;
+                currentEffect = existingEffect;
             }
             else
             {
-                ActiveEffects.Add(new EffectData { Type = type, Duration = duration, StartTime = Time.time });
+                EffectData newEffect = new EffectData { Type = type, Duration = duration, StartTime = Time.time };
+                currentEffect = newEffect;
+                ActiveEffects.Add(newEffect);
                 switch (type)
                 {
                     case EffectType.SpeedBoost:
@@ -124,6 +129,12 @@ namespace ZyroX
             MapController.Instance.SetSpeedMultiplier(1f);
             ActiveShield(false);
             IsActive = false;
+        }
+
+        public float GetCurrentEffectTimer()
+        {
+            float elapsed = Time.time - currentEffect.StartTime;
+            return Mathf.Clamp01(elapsed / currentEffect.Duration);
         }
     }
 
