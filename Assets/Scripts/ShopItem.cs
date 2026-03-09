@@ -20,11 +20,15 @@ namespace ZyroX
             Icon.sprite = Resources.Load<Sprite>("Icons/" + shipData.PrefabName);
             NameText.text = shipData.Name;
             CostText.text = "Cost: " + shipData.Cost.ToString();
-            if (PlayerData.OwnsShip(shipData.Id))
+            if (PlayerData.IsShipOwned(shipData.Id))
             {
-                StatusText.text = "Owned";
+                if(PlayerData.SelectedShip == shipData.Id)
+                {
+                    StatusText.text = "Selected";
+                }
+                else
+                    StatusText.text = "Owned";
                 NotEnoughOverlay.SetActive(false);
-                BuyButton.interactable = false;
             }
             else
             {

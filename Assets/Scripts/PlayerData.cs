@@ -68,9 +68,19 @@ namespace ZyroX
         set => PlayerPrefs.SetString(SelectedShipKey, value);
     }
 
-    public static bool OwnsShip(string shipId)
+    public static bool IsShipOwned(string shipId)
     {
-        return OwnedShips.Contains(shipId);
+        string[] ownedShips = PlayerPrefs.GetString(OwnedShipsKey, "1").Split(',');
+        bool owned = false;
+            foreach (var ship in ownedShips)
+            {
+                if (ship == shipId)
+                {
+                    owned = true;
+                    break;
+                }
+            }
+        return owned;
     }
 
     public static void AddShip(string shipId)
