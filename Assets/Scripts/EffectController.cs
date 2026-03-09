@@ -87,15 +87,15 @@ namespace ZyroX
                 {
                     case EffectType.SpeedBoost:
                         MapController.Instance.SetSpeedMultiplier(SpeedBoostMultiplier);
-                        GameManager.Instance.AddCoin(300);
+                        GameManager.Instance.AddCoin(500);
                         break;
                     case EffectType.Shield:
                         ActiveShield(true);
-                        GameManager.Instance.AddCoin(300);
+                        GameManager.Instance.AddCoin(500);
                         break;
                     case EffectType.Slow:
                         MapController.Instance.SetSpeedMultiplier(SlowMultiplier);
-                        GameManager.Instance.AddCoin(300);
+                        GameManager.Instance.AddCoin(500);
                         // Handle slow logic
                         break;
                 }
@@ -151,6 +151,7 @@ namespace ZyroX
 
     public enum EffectType
     {
+        None = 10,
         SpeedBoost,
         Shield,
         Slow

@@ -16,24 +16,50 @@ namespace ZyroX
         [SerializeField] private float showDuration = 0.2f;
         [SerializeField] private float hideDuration = 0.15f;
         [SerializeField] private float bounceScale = 1.15f;
+        [SerializeField] private float timeLife = 1.5f;
 
         private Coroutine[] animCoroutines;
+        private EffectAnimation[] activeAnims;
         private int previousIndex = 0;
 
         void Awake()
         {
-            animCoroutines = new Coroutine[Messages.Length];     
+            animCoroutines = new Coroutine[Messages.Length];
+            activeAnims = new EffectAnimation[Messages.Length];
             HideAll();       
         }
 
         void Update()
         {
-            if(Messages[MessageType.Effects.GetHashCode()].activeSelf)
+            for (int i = 0; i < activeAnims.Length; i++)
             {
-                EffectTimerFill.fillAmount = EffectController.Instance.GetCurrentEffectTimer();
-                if(EffectTimerFill.fillAmount <= 0)
+                if (!activeAnims[i].IsAnimtionShowing) continue;
+
+                if (i == (int)MessageType.Bonus)
                 {
-                    HideMessage(MessageType.Effects);
+                    // Bonus: đếm ngược duration rồi tắt
+                    var anim = activeAnims[i];
+                    anim.Duration -= Time.deltaTime;
+                    activeAnims[i] = anim;
+                    if (activeAnims[i].Duration <= 0f)
+                    {
+                        var a = activeAnims[i];
+                        a.IsAnimtionShowing = false;
+                        activeAnims[i] = a;
+                        HideMessage(MessageType.Bonus);
+                    }
+                }
+                else if (i == (int)MessageType.Effects)
+                {
+                    // Effects: tắt khi fillAmount hết
+                    EffectTimerFill.fillAmount = EffectController.Instance.GetCurrentEffectTimer();
+                    if (EffectTimerFill.fillAmount <= 0f)
+                    {
+                        var a = activeAnims[i];
+                        a.IsAnimtionShowing = false;
+                        activeAnims[i] = a;
+                        HideMessage(MessageType.Effects);
+                    }
                 }
             }
         }
@@ -44,7 +70,6 @@ namespace ZyroX
             if(previousIndex != (int)type)
             {
                 Messages[previousIndex].SetActive(false);
-                return;
             }
             Debug.Log("ShowMessage: " + type + "/" + ((int)type));
             int index = (int)type;
@@ -59,19 +84,24 @@ namespace ZyroX
                 switch (EffectController.Instance.CurrentEffect.Type)
                 {
                     case EffectType.SpeedBoost:
-                        EffectText.text = "SPEED BOOST!";
+                        EffectText.text = "SPEED BOOST! +500";
                         break;
                     case EffectType.Shield:
-                        EffectText.text = "GOT SHIELD!";
+                        EffectText.text = "GOT SHIELD! +500";
                         break;
                     case EffectType.Slow:
-                        EffectText.text = "IT'S SLOW TIME!";
+                        EffectText.text = "IT'S SLOW TIME! +500";
                         break;
                 }
             }
 
             if (animCoroutines[previousIndex] != null) StopCoroutine(animCoroutines[previousIndex]);
             if (animCoroutines[index] != null) StopCoroutine(animCoroutines[index]);
+
+            // Đăng ký EffectAnimation request
+            float duration = (type == MessageType.Bonus) ? timeLife : 0f;
+            activeAnims[index] = new EffectAnimation(EffectType.None, duration);
+
             animCoroutines[index] = StartCoroutine(AnimShow(Messages[index]));
             previousIndex = index;
         }
@@ -112,10 +142,11 @@ namespace ZyroX
         private IEnumerator AnimHide(GameObject msg)
         {
             Transform t = msg.transform;
+            Debug.Log("Start hiding message: " + msg.name);
             float elapsed = 0f;
             while (elapsed < hideDuration)
             {
-                elapsed += Time.unscaledDeltaTime;
+                elapsed += Time.deltaTime;
                 float s = Mathf.Lerp(1f, 0f, elapsed / hideDuration);
                 t.localScale = Vector3.one * s;
                 yield return null;
@@ -141,6 +172,19 @@ namespace ZyroX
         LookOut = 0,
         Bonus = 1,
         Effects = 2
+    }
+
+    public struct EffectAnimation{
+        public EffectType Type;
+        public bool IsAnimtionShowing;
+        public float Duration;
+
+        public EffectAnimation(EffectType type, float duration)
+        {
+            Type = type;
+            Duration = duration;
+            IsAnimtionShowing = true;
+        }
     }
 
 }
