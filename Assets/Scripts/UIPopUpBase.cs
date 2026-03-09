@@ -21,6 +21,12 @@ namespace ZyroX
             PlayAnim(Vector3.one, Vector3.zero, onDone: () => gameObject.SetActive(false));
         }
 
+        public virtual void Back(){
+            Hide();
+            if(UIManager.Instance.PreviousPopUp != null)            {
+                UIManager.Instance.ShowPopUp(UIManager.Instance.PreviousPopUp);            }
+        }
+
         private void PlayAnim(Vector3 from, Vector3 to, System.Action onDone = null)
         {
             if (animCoroutine != null) StopCoroutine(animCoroutine);
