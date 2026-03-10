@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.EventSystems;
-using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 namespace ZyroX
 {
@@ -32,14 +29,12 @@ namespace ZyroX
 
         void OnEnable()
         {
-            EnhancedTouchSupport.Enable();
-            TouchSimulation.Enable();
+            // legacy Input system doesn't need explicit enable
         }
 
         void OnDisable()
         {
-            TouchSimulation.Disable();
-            EnhancedTouchSupport.Disable();
+            // legacy Input system doesn't need explicit disable
         }
 
         void Start()
@@ -62,16 +57,10 @@ namespace ZyroX
 
         private void HandleInput()
         {
-            // keyboard input (arrow keys or A/D) takes priority
+            // keyboard input (arrow keys or A/D) takes priority (legacy Input)
             int keyboardDir = 0;
-            var kb = Keyboard.current;
-            if (kb != null)
-            {
-                bool left = (kb.leftArrowKey != null && kb.leftArrowKey.isPressed) || (kb.aKey != null && kb.aKey.isPressed);
-                bool right = (kb.rightArrowKey != null && kb.rightArrowKey.isPressed) || (kb.dKey != null && kb.dKey.isPressed);
-                if (left && !right) keyboardDir = -1;
-                else if (right && !left) keyboardDir = 1;
-            }
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) keyboardDir = -1;
+            else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) keyboardDir = 1;
 
             if (keyboardDir != 0)
             {
@@ -79,31 +68,42 @@ namespace ZyroX
                 return;
             }
 
-            var touches = Touch.activeTouches;
-            if (touches.Count == 0)
+            // mouse input (desktop) - treat as single touch
+            if (Input.GetMouseButton(0))
+            {
+                Vector2 pos = Input.mousePosition;
+                if (IsPointerOverUI(pos))
+                {
+                    holdDirection = 0;
+                    return;
+                }
+                float half = Screen.width * 0.5f;
+                holdDirection = pos.x < half ? -1 : 1;
+                return;
+            }
+
+            // touch input (mobile)
+            if (Input.touchCount == 0)
             {
                 holdDirection = 0;
                 return;
             }
 
-            var touch = touches[0];
+            UnityEngine.Touch touch = Input.touches[0];
+            Vector2 screenPos = touch.position;
             // ignore touches that are over UI elements
-            if (IsPointerOverUI(touch.screenPosition))
+            if (IsPointerOverUI(screenPos))
             {
                 holdDirection = 0;
                 return;
             }
-            var phase = touch.phase;
 
-            if (phase == UnityEngine.InputSystem.TouchPhase.Began ||
-                phase == UnityEngine.InputSystem.TouchPhase.Stationary ||
-                phase == UnityEngine.InputSystem.TouchPhase.Moved)
+            if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
                 float half = Screen.width * 0.5f;
-                holdDirection = touch.screenPosition.x < half ? -1 : 1;
+                holdDirection = screenPos.x < half ? -1 : 1;
             }
-            else if (phase == UnityEngine.InputSystem.TouchPhase.Ended ||
-                     phase == UnityEngine.InputSystem.TouchPhase.Canceled)
+            else if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
                 holdDirection = 0;
             }
