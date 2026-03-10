@@ -144,7 +144,7 @@ namespace ZyroX
             {
                 int effectLineIndex = GetNextEffectLineIndex();
                 Vector3 effectPosition = line.GetLinePoint(effectLineIndex);
-                line.Effect = SpawnEffectFromSet(_currentCheckPoint, effectPosition, Quaternion.identity);
+                SpawnEffectFromSet(_currentCheckPoint, effectPosition, Quaternion.identity);
             }
             if (IsSkippingObstacle() || isDebug)
             {
@@ -417,9 +417,14 @@ namespace ZyroX
             {
                 obj.transform.position += move;
             }
-            foreach (var obj in activeEffects)
+            for (int i = activeEffects.Count - 1; i >= 0; i--)
             {
+                var obj = activeEffects[i];
                 obj.transform.position += move;
+                if (obj.transform.position.z < 0f)
+                {
+                    ReturnEffect(obj);
+                }
             }
             UpdateCheckPoint();
         }
