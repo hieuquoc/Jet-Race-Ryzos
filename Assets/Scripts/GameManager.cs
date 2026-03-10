@@ -80,6 +80,28 @@ namespace ZyroX
             InputController.Instance.SetInputEnabled(true);
             EffectController.Instance.Reset();
             Debug.Log("Map controller move" + MapController.IsMoving);
+            Debug.Log("Tutorial 0 completed: " + TutorialManager.Instance.IsCompleted(0));
+            if(!TutorialManager.Instance.IsCompleted(0))
+            {
+                MapController.Instance.SetSpeedMultiplier(0f);
+                TutorialManager.Instance.ShowTutorial(0, () =>
+                {
+                    MapController.Instance.SetSpeedMultiplier(1f);
+                    InputController.Instance.OverrideDirection(1, 2);
+                    StartCoroutine(DelayNextTutorial(3f, 1));
+                });
+            }
+        }
+
+        IEnumerator DelayNextTutorial(float delay, int tutorialId)
+        {
+            yield return new WaitForSeconds(delay);
+            MapController.Instance.SetSpeedMultiplier(0f);
+            TutorialManager.Instance.ShowTutorial(tutorialId, () =>
+            {
+                InputController.Instance.OverrideDirection(-1, 2);
+                MapController.Instance.SetSpeedMultiplier(1f);
+            });
         }
 
         public void GameOver()
