@@ -19,7 +19,7 @@ public class GameOverUI : UIPopUpBase
     {
         base.Show();
         TargetDistanceText.SetText($"{PlayerData.RecordDistance:F1}m");
-        CoinCollectedText.SetText($"COINS COLLECTED: {GameManager.RunCoin}");
+        CoinCollectedText.SetText($"{GameManager.RunCoin}");
         StartCoroutine(PlaySequence());
     }
 

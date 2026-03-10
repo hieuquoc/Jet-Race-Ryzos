@@ -72,15 +72,6 @@ namespace ZyroX
     void Update()
     {
         if (!isMoving) return;
-        if(tickTimer > 0f)
-        {
-            tickTimer -= Time.deltaTime;
-        }
-        else
-        {
-            tickTimer = 1f;
-            PlayerData.UpdateRecordDistance(RunDistance);
-        }
         float move = moveSpeed * speedMultiplier * Time.deltaTime;
         RunDistance += move;
         LoopStartDistance += move;

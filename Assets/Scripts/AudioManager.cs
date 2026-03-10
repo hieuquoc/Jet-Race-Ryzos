@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ZyroX
 {
@@ -20,6 +21,12 @@ namespace ZyroX
         public AudioClip EffectPickupSFX;
         public AudioClip ButtonClickSFX;
 
+        public Toggle SoundToggle;
+
+        private const string PlayerPrefsSoundKey = "SoundEnabled_v1";
+        private bool soundEnabled = true;
+        private bool soundToggleListenerAdded = false;
+
         [Header("Settings")]
         [Range(0f, 1f)] public float MusicVolume = 1f;
         [Range(0f, 1f)] public float SFXVolume = 1f;
@@ -38,7 +45,26 @@ namespace ZyroX
             }
 
             musicSource.loop = true;
+            // load saved sound enabled state
+            soundEnabled = PlayerPrefs.GetInt(PlayerPrefsSoundKey, 1) == 1;
+            if (SoundToggle != null)
+            {
+                // Toggle ON means muted, Toggle OFF means sound on
+                SoundToggle.isOn = !soundEnabled;
+                SoundToggle.onValueChanged.AddListener(OnSoundToggleChanged);
+                soundToggleListenerAdded = true;
+            }
             ApplyVolume();
+            musicSource.mute = !soundEnabled;
+            sfxSource.mute = !soundEnabled;
+        }
+
+        void OnDestroy()
+        {
+            if (soundToggleListenerAdded && SoundToggle != null)
+            {
+                SoundToggle.onValueChanged.RemoveListener(OnSoundToggleChanged);
+            }
         }
 
         // ── Music ─────────────────────────────────────────────
@@ -60,6 +86,7 @@ namespace ZyroX
         {
             MusicVolume = Mathf.Clamp01(volume);
             musicSource.volume = MusicVolume;
+            ApplyVolume();
         }
 
         // ── SFX ───────────────────────────────────────────────
@@ -74,6 +101,7 @@ namespace ZyroX
         {
             SFXVolume = Mathf.Clamp01(volume);
             sfxSource.volume = SFXVolume;
+            ApplyVolume();
         }
 
 
@@ -84,6 +112,31 @@ namespace ZyroX
             musicSource.volume = MusicVolume;
             sfxSource.volume = SFXVolume;
         }
+
+        private void OnSoundToggleChanged(bool isOn)
+        {
+            // UI Toggle ON means muted, OFF means sound on
+            SetSoundEnabled(!isOn);
+        }
+
+        // Sound toggle API
+        public void SetSoundEnabled(bool enabled)
+        {
+            soundEnabled = enabled;
+            PlayerPrefs.SetInt(PlayerPrefsSoundKey, enabled ? 1 : 0);
+            PlayerPrefs.Save();
+            musicSource.mute = !enabled;
+            sfxSource.mute = !enabled;
+        }
+
+        public void ToggleSound()
+        {
+            SetSoundEnabled(!soundEnabled);
+            if (SoundToggle != null && SoundToggle.isOn != !soundEnabled)
+                SoundToggle.isOn = !soundEnabled;
+        }
+
+        public bool IsSoundEnabled() => soundEnabled;
 
         // Shortcut methods để gọi nhanh từ chỗ khác
         public void PlayCoin()      => PlaySFX(CoinSFX);

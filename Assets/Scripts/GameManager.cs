@@ -58,7 +58,7 @@ namespace ZyroX
 
         public void StartGame()
         {
-            LoadShip(CurrentShipId);    
+            LoadShip(PlayerData.SelectedShip);    
             MapController.Instance.Stop();        
             EffectController.Instance.Reset();
             ExplosionVfx.SetActive(false);
