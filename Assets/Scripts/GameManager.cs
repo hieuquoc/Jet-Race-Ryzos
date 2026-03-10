@@ -100,7 +100,7 @@ namespace ZyroX
             TutorialManager.Instance.ShowTutorial(tutorialId, () =>
             {
                 InputController.Instance.OverrideDirection(-1, 2);
-                MapController.Instance.AccelerateTo(1f, 2f);
+                MapController.Instance.AccelerateTo(1f, 3f);
             });
         }
 

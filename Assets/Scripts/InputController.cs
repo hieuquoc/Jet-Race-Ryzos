@@ -62,6 +62,23 @@ namespace ZyroX
 
         private void HandleInput()
         {
+            // keyboard input (arrow keys or A/D) takes priority
+            int keyboardDir = 0;
+            var kb = Keyboard.current;
+            if (kb != null)
+            {
+                bool left = (kb.leftArrowKey != null && kb.leftArrowKey.isPressed) || (kb.aKey != null && kb.aKey.isPressed);
+                bool right = (kb.rightArrowKey != null && kb.rightArrowKey.isPressed) || (kb.dKey != null && kb.dKey.isPressed);
+                if (left && !right) keyboardDir = -1;
+                else if (right && !left) keyboardDir = 1;
+            }
+
+            if (keyboardDir != 0)
+            {
+                holdDirection = keyboardDir;
+                return;
+            }
+
             var touches = Touch.activeTouches;
             if (touches.Count == 0)
             {
@@ -74,7 +91,6 @@ namespace ZyroX
             if (IsPointerOverUI(touch.screenPosition))
             {
                 holdDirection = 0;
-                spaceShip.Direction = Vector3.zero;
                 return;
             }
             var phase = touch.phase;
@@ -90,7 +106,7 @@ namespace ZyroX
                      phase == UnityEngine.InputSystem.TouchPhase.Canceled)
             {
                 holdDirection = 0;
-            }            
+            }
         }
 
         private bool IsPointerOverUI(Vector2 screenPosition)
