@@ -19,12 +19,20 @@ namespace ZyroX
         private void Awake()
         {
             Instance = this;
+            // force screen orientation to Landscape Left
+            Screen.autorotateToLandscapeLeft = true;
+            Screen.autorotateToLandscapeRight = false;
+            Screen.autorotateToPortrait = false;
+            Screen.autorotateToPortraitUpsideDown = false;
+            Screen.orientation = ScreenOrientation.LandscapeLeft;
+
             Instantiate(Resources.Load<GameObject>("ObstacleManager"), Vector3.zero, Quaternion.identity);
         }
 
         // Start is called before the first frame update
         void Start()
         {
+            
             CurrentShipId = PlayerData.SelectedShip;
             SpaceShipPoint.gameObject.SetActive(false);
         }
