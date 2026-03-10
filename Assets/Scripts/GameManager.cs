@@ -86,7 +86,7 @@ namespace ZyroX
                 MapController.Instance.SetSpeedMultiplier(0f);
                 TutorialManager.Instance.ShowTutorial(0, () =>
                 {
-                    MapController.Instance.SetSpeedMultiplier(1f);
+                    MapController.Instance.SetSpeedMultiplier(0.5f);
                     InputController.Instance.OverrideDirection(1, 2);
                     StartCoroutine(DelayNextTutorial(3f, 1));
                 });
@@ -100,7 +100,7 @@ namespace ZyroX
             TutorialManager.Instance.ShowTutorial(tutorialId, () =>
             {
                 InputController.Instance.OverrideDirection(-1, 2);
-                MapController.Instance.SetSpeedMultiplier(1f);
+                MapController.Instance.AccelerateTo(1f, 2f);
             });
         }
 

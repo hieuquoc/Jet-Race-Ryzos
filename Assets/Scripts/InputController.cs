@@ -54,8 +54,10 @@ namespace ZyroX
 
             if (holdDirection != 0 && Camera != null)
             {
+                Debug.Log("Moving camera with holdDirection: " + holdDirection);
                 Camera.localPosition += Vector3.right * holdDirection * moveSpeed * Time.deltaTime;
             }
+            spaceShip.Direction = Vector3.right * holdDirection;
         }
 
         private void HandleInput()
@@ -88,8 +90,7 @@ namespace ZyroX
                      phase == UnityEngine.InputSystem.TouchPhase.Canceled)
             {
                 holdDirection = 0;
-            }
-            spaceShip.Direction = Vector3.right * holdDirection;
+            }            
         }
 
         private bool IsPointerOverUI(Vector2 screenPosition)

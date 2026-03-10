@@ -158,6 +158,25 @@ namespace ZyroX
         speedMultiplier = newMultiplier;
     }
 
+    public void AccelerateTo(float targetMultiplier, float duration)
+    {
+        StartCoroutine(Acceleration(targetMultiplier, duration));
+    }
+
+    IEnumerator Acceleration(float targetMultiplier, float duration)
+    {
+        float startMultiplier = speedMultiplier;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            speedMultiplier = Mathf.Lerp(startMultiplier, targetMultiplier, elapsed / duration);
+            yield return null;
+        }
+        speedMultiplier = targetMultiplier;
+    }
+
     public void StartGame()
     {
         isMoving = true;
